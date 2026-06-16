@@ -87,50 +87,6 @@
 
               {% render 'card-product', product: product, badge: section.settings.badge_text %}
             {%- endfor -%}
-
-            {%- comment -%} Overflow promo tiles (position > product count) {%- endcomment -%}
-            {%- assign total_products = collection.products.size -%}
-            {%- for block in section.blocks -%}
-              {%- if block.type == 'promo_text_button' and block.settings.position > total_products and paginate.current_page == 1 -%}
-                <div class="promo-tile promo-tile--text-btn" {{ block.shopify_attributes }}>
-                  <div class="promo-tile__media">
-                    {%- if block.settings.image != blank -%}
-                      <img src="{{ block.settings.image | image_url: width: 800 }}" alt="" loading="lazy" width="600" height="750">
-                    {%- else -%}
-                      <img src="{{ 'ecosystem-hands.png' | asset_url }}" alt="" loading="lazy" width="600" height="750">
-                    {%- endif -%}
-                  </div>
-                  <div class="promo-tile__content">
-                    <h3 class="promo-tile__heading">{{ block.settings.heading }}</h3>
-                    {%- if block.settings.button_label != blank -%}
-                      <a class="btn promo-tile__btn" href="{{ block.settings.button_link }}">{{ block.settings.button_label }}</a>
-                    {%- endif -%}
-                  </div>
-                </div>
-              {%- elsif block.type == 'promo_bullets' and block.settings.position > total_products and paginate.current_page == 1 -%}
-                <div class="promo-tile promo-tile--bullets" {{ block.shopify_attributes }}>
-                  <div class="promo-tile__content">
-                    <h3 class="promo-tile__heading">{{ block.settings.heading }}</h3>
-                    {%- assign bullet_lines = block.settings.bullets | split: '\n' -%}
-                    <ul class="promo-tile__bullets">
-                      {%- for line in bullet_lines -%}
-                        {%- if line != blank -%}
-                          <li class="promo-tile__bullet">{{ line }}</li>
-                        {%- endif -%}
-                      {%- endfor -%}
-                    </ul>
-                  </div>
-                  <div class="promo-tile__media">
-                    {%- if block.settings.image != blank -%}
-                      <img src="{{ block.settings.image | image_url: width: 800 }}" alt="" loading="lazy" width="600" height="750">
-                    {%- else -%}
-                      <img src="{{ 'ecosystem-hands.png' | asset_url }}" alt="" loading="lazy" width="600" height="750">
-                    {%- endif -%}
-                  </div>
-                </div>
-              {%- endif -%}
-            {%- endfor -%}
-
           </div>
 
           {%- if paginate.pages > 1 -%}
