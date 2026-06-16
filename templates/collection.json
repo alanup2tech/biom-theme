@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "banner": {
@@ -10,14 +19,6 @@
     },
     "product_grid": {
       "type": "main-collection",
-      "settings": {
-        "show_tabs": true,
-        "heading": "Probiotic Feminine Products",
-        "badge_text": "Subscribe & Save 15%",
-        "products_per_page": 12,
-        "promo_text": "<p>Find the <strong>Probiotic</strong> That Fits Your Needs</p>",
-        "promo_position": 5
-      },
       "blocks": {
         "tab_1": {
           "type": "tab",
@@ -62,7 +63,22 @@
           }
         }
       },
-      "block_order": ["tab_1", "tab_2", "tab_3", "tab_4", "tab_5", "tab_6"]
+      "block_order": [
+        "tab_1",
+        "tab_2",
+        "tab_3",
+        "tab_4",
+        "tab_5",
+        "tab_6"
+      ],
+      "settings": {
+        "show_tabs": true,
+        "heading": "Probiotic Feminine Products",
+        "badge_text": "Subscribe & Save 15%",
+        "products_per_page": 12,
+        "promo_text": "<p>Find the <strong>Probiotic</strong> That Fits Your Needs</p>",
+        "promo_position": 5
+      }
     },
     "cta": {
       "type": "ecosystem-cta",
@@ -70,9 +86,14 @@
         "heading": "Your Microbiome Is an Ecosystem. Support It Like One.",
         "text": "Made for every woman that's endlessly searched for answers. Developed with medical experts and validated through independent clinical studies, because it's what we deserve.",
         "button_label": "Take the Gut Health Quiz",
-        "button_link": "/pages/take-the-quiz"
+        "button_link": "/pages/take-the-quiz",
+        "image": "shopify://shop_images/Fourwomens.png"
       }
     }
   },
-  "order": ["banner", "product_grid", "cta"]
+  "order": [
+    "banner",
+    "product_grid",
+    "cta"
+  ]
 }
