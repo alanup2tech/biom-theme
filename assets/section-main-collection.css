@@ -41,7 +41,18 @@
   font-size: clamp(2rem, 2.5vw, 3rem);
   color: var(--color-olive);
   text-align: center;
-  margin: clamp(1.5rem, 2.5vw, 3rem) 0 clamp(2rem, 3.125vw, 3.75rem);
+  margin: clamp(1.5rem, 2.5vw, 3rem) 0 0;
+}
+
+.main-collection__subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(0.875rem, 1vw, 1.125rem);
+  color: var(--color-body);
+  text-align: center;
+  margin: 0.75rem 0 clamp(2rem, 3.125vw, 3.75rem);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .main-collection__grid {

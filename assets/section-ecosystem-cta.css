@@ -55,7 +55,7 @@
 }
 
 .ecosystem-cta__btn {
-  background: var(--color-accent);
+  background: var(--color-primary);
   color: var(--color-white);
   align-self: center;
   text-transform: uppercase;
