@@ -61,23 +61,6 @@
             "collection": "all",
             "heading": "Shop All"
           }
-        },
-        "promo_1": {
-          "type": "promo_text_button",
-          "settings": {
-            "heading": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            "button_label": "Take the Gut Health Quiz",
-            "button_link": "/pages/take-the-quiz",
-            "position": 5
-          }
-        },
-        "promo_2": {
-          "type": "promo_bullets",
-          "settings": {
-            "heading": "Boric Acid Suppository With Probiotics & Prebiotics",
-            "bullets": "Lorem ipsum dolor sit amet\nConsectetur adipiscing elit\nLorem ipsum dolor sit amet",
-            "position": 8
-          }
         }
       },
       "block_order": [
@@ -86,15 +69,15 @@
         "tab_3",
         "tab_4",
         "tab_5",
-        "tab_6",
-        "promo_1",
-        "promo_2"
+        "tab_6"
       ],
       "settings": {
         "show_tabs": true,
         "heading": "Probiotic Feminine Products",
         "badge_text": "Subscribe & Save 15%",
-        "products_per_page": 12
+        "products_per_page": 12,
+        "promo_text": "<p>Find the <strong>Probiotic</strong> That Fits Your Needs</p>",
+        "promo_position": 5
       }
     },
     "cta": {

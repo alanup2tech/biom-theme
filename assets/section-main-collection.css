@@ -50,83 +50,44 @@
   gap: clamp(1rem, 1.5625vw, 1.875rem);
 }
 
-/* ── Promo tiles ── */
-.promo-tile {
+.main-collection__promo {
   grid-column: span 2;
-  display: flex;
   border-radius: 30px;
   overflow: hidden;
+  position: relative;
   min-height: clamp(20rem, 28.6vw, 34.375rem);
 }
 
-.promo-tile__media {
-  width: 50%;
-  flex-shrink: 0;
-}
-
-.promo-tile__media img {
+.main-collection__promo img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform var(--duration-long) var(--ease-spring);
 }
 
-.promo-tile__content {
-  width: 50%;
+.main-collection__promo:hover img {
+  transform: scale(1.04);
+}
+
+.main-collection__promo-text {
+  position: absolute;
+  inset: 0;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  padding: clamp(1.5rem, 3vw, 3rem);
-}
-
-.promo-tile__heading {
-  font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: clamp(1.5rem, 2vw, 2.5rem);
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
-}
-
-/* Type 1: Text + Button */
-.promo-tile--text-btn {
-  background: var(--color-cream);
-}
-
-.promo-tile--text-btn .promo-tile__heading {
-  color: var(--color-olive);
-}
-
-.promo-tile--text-btn .promo-tile__btn {
-  background: var(--color-accent);
+  text-align: center;
+  padding: 2rem;
   color: var(--color-white);
-  align-self: flex-start;
+  font-size: clamp(1.25rem, 1.46vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1.35;
+  background: rgba(44, 58, 34, 0.12);
 }
 
-/* Type 2: Bullets */
-.promo-tile--bullets {
-  background: var(--color-olive);
-  color: var(--color-white);
-}
-
-.promo-tile--bullets .promo-tile__heading {
-  color: var(--color-white);
-}
-
-.promo-tile__bullets {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.promo-tile__bullet {
-  background: var(--color-accent);
-  color: var(--color-white);
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: clamp(0.875rem, 1vw, 1.125rem);
+.main-collection__promo-text strong {
+  font-weight: 800;
 }
 
 .main-collection__empty {
@@ -202,18 +163,8 @@
     grid-template-columns: 1fr;
   }
 
-  .promo-tile {
+  .main-collection__promo {
     grid-column: span 1;
-    flex-direction: column;
-  }
-
-  .promo-tile__media,
-  .promo-tile__content {
-    width: 100%;
-  }
-
-  .promo-tile__media {
-    height: 16rem;
   }
 
   .collection-tabs {
