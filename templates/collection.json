@@ -24,7 +24,7 @@
           "type": "tab",
           "settings": {
             "collection": "best-sellers",
-            "heading": "Best sellers"
+            "heading": "Best Sellers"
           }
         },
         "tab_2": {
@@ -74,7 +74,6 @@
       "settings": {
         "show_tabs": true,
         "heading": "Probiotic Feminine Products",
-        "subheading": "Shop our best-selling products, all packed with our hunger-quieting probiotic blend.",
         "badge_text": "Subscribe & Save 15%",
         "products_per_page": 12,
         "promo_text": "<p>Find the <strong>Probiotic</strong> That Fits Your Needs</p>",
@@ -94,6 +93,7 @@
   },
   "order": [
     "banner",
-    "product_grid"
+    "product_grid",
+    "cta"
   ]
 }

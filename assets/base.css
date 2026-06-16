@@ -35,8 +35,6 @@
 
   --radius-sm: 10px;
   --radius-md: 20px;
-  --radius-lg: 30px;
-  --radius-xl: 60px;
 
   --duration-short: 0.2s;
   --duration-default: 0.3s;
@@ -214,14 +212,14 @@ svg {
 }
 
 .btn--beige {
-  background-color: var(--color-dark-green);
-  color: var(--color-cream-bright);
+  background-color: var(--color-beige);
+  color: var(--color-olive);
   font-family: var(--font-grift);
   font-size: 1rem;
 }
 
 .btn--beige:hover {
-  background-color: var(--color-primary);
+  background-color: var(--color-white);
 }
 
 .btn--outline-white {

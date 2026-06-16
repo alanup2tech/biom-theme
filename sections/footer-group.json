@@ -16,7 +16,7 @@
           "type": "link_column",
           "settings": {
             "heading": "Learn",
-            "fallback_links": "Gut Health | /blogs/news\nTake the Quiz | /pages/take-the-quiz\n90-Day Reset | /pages/90-day-reset\nMicrobiome Science | /pages/our-science"
+            "fallback_links": "Gut Health | /blogs/news\nTake the Quiz | /pages/take-the-quiz\nMicrobiome Science | /pages/our-science"
           }
         },
         "col_company": {
