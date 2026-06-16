@@ -9,23 +9,12 @@
           <a class="collection-tabs__tab{% if link.current %} is-active{% endif %}" href="{{ link.url }}">{{ link.title }}</a>
         {%- endfor -%}
       {%- else -%}
-        {%- assign has_collections = false -%}
-        {%- for c in collections limit: 1 -%}
-          {%- assign has_collections = true -%}
-        {%- endfor -%}
-        {%- if has_collections -%}
-          {%- for c in collections limit: 5 -%}
-            <a class="collection-tabs__tab{% if c.handle == collection.handle %} is-active{% endif %}" href="{{ c.url }}">{{ c.title }}</a>
-          {%- endfor -%}
-          <a class="collection-tabs__tab{% if collection.handle == 'all' %} is-active{% endif %}" href="{{ routes.all_products_collection_url }}">Shop All</a>
-        {%- else -%}
-          <a class="collection-tabs__tab" href="/collections/best-sellers">Best sellers</a>
-          <a class="collection-tabs__tab" href="/collections/feminine-hygiene-health">Feminine hygiene &amp; health</a>
-          <a class="collection-tabs__tab" href="/collections/gut-health">Gut health</a>
-          <a class="collection-tabs__tab" href="/collections/anti-oxidant-brain-support">Anti-oxidant &amp; brain support</a>
-          <a class="collection-tabs__tab" href="/collections/skin-brightening">Skin brightening</a>
-          <a class="collection-tabs__tab{% if collection.handle == 'all' %} is-active{% endif %}" href="{{ routes.all_products_collection_url }}">Shop all</a>
-        {%- endif -%}
+        <a class="collection-tabs__tab" href="/collections/best-sellers">Best sellers</a>
+        <a class="collection-tabs__tab" href="/collections/feminine-hygiene-health">Feminine hygiene &amp; health</a>
+        <a class="collection-tabs__tab" href="/collections/gut-health">Gut health</a>
+        <a class="collection-tabs__tab" href="/collections/anti-oxidant-brain-support">Anti-oxidant &amp; brain support</a>
+        <a class="collection-tabs__tab" href="/collections/skin-brightening">Skin brightening</a>
+        <a class="collection-tabs__tab{% if collection.handle == 'all' %} is-active{% endif %}" href="{{ routes.all_products_collection_url }}">Shop all</a>
       {%- endif -%}
     </nav>
   {%- endif -%}
