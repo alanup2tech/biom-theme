@@ -2,15 +2,31 @@
   "sections": {
     "banner": {
       "type": "collection-banner",
-      "settings": {}
+      "settings": {
+        "heading": "Shop All",
+        "subheading": "Support for all life stages!",
+        "bullets": "100% Products are made in USA\nClinically studied ingredients\nVegan, non GMO, gluten free products"
+      }
     },
     "product_grid": {
       "type": "main-collection",
-      "settings": {}
+      "settings": {
+        "show_tabs": true,
+        "heading": "Probiotic Feminine Products",
+        "badge_text": "Subscribe & Save 15%",
+        "products_per_page": 12,
+        "promo_text": "<p>Find the <strong>Probiotic</strong> That Fits Your Needs</p>",
+        "promo_position": 5
+      }
     },
     "cta": {
       "type": "ecosystem-cta",
-      "settings": {}
+      "settings": {
+        "heading": "Your Microbiome Is an Ecosystem. Support It Like One.",
+        "text": "Made for every woman that's endlessly searched for answers. Developed with medical experts and validated through independent clinical studies, because it's what we deserve.",
+        "button_label": "Take the Gut Health Quiz",
+        "button_link": "/pages/take-the-quiz"
+      }
     }
   },
   "order": ["banner", "product_grid", "cta"]
