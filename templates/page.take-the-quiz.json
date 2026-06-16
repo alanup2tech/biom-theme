@@ -3,7 +3,7 @@
     "quiz": {
       "type": "quiz",
       "blocks": {
-        "s1":  { "type": "step", "settings": { "question": "What Matters Most To You Right Now?",               "hint": "We'll find products that are the best fit. Select all that apply.",                                  "options": "Gut Health\nGeneral Health\nFocus/Mental Clarity\nSleep\nEnergy",                                                                               "multi_select": true  } },
+        "s1":  { "type": "step", "settings": { "question": "What matters most to you right now?",               "hint": "We'll find products that are the best fit. Select all that apply.",                                  "options": "Gut health\nGeneral health\nFocus/Mental clarity\nSleep\nEnergy",                                                                               "multi_select": true  } },
         "s2":  { "type": "step", "settings": { "question": "How would you describe your digestion?",            "hint": "Select the option that fits best.",                                                                  "options": "Mostly comfortable\nOccasional bloating\nFrequently irregular\nSensitive to many foods",                                                         "multi_select": false } },
         "s3":  { "type": "step", "settings": { "question": "Are you currently using a GLP-1 medication?",      "hint": "This helps us match gut support for your metabolism.",                                               "options": "Yes\nNo\nConsidering it",                                                                                                                        "multi_select": false } },
         "s4":  { "type": "step", "settings": { "question": "What's your top wellness goal?",                    "hint": "Select all that apply.",                                                                             "options": "Weight management\nImmunity\nDaily balance\nWomen's health\nHealthy aging",                                                                        "multi_select": true  } },
@@ -16,7 +16,7 @@
       },
       "block_order": ["s1","s2","s3","s4","s5","s6","s7","s8","s9","s10"],
       "settings": {
-        "continue_label": "CONTINUE",
+        "continue_label": "Continue",
         "finish_label": "See My Results",
         "result_heading": "Your Microbiome Match",
         "result_text": "Based on your answers, we recommend starting with our microbiome systems below.",
@@ -28,5 +28,5 @@
       "settings": {}
     }
   },
-  "order": ["quiz", "cta"]
+  "order": ["quiz"]
 }

@@ -5,6 +5,14 @@
   padding: clamp(2.5rem, 4vw, 5rem) 0 clamp(3rem, 5vw, 6.25rem);
 }
 
+.main-collection.has-green-bg {
+  background: var(--color-olive);
+}
+
+.main-collection.has-green-bg .main-collection__heading {
+  color: var(--color-white);
+}
+
 .collection-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -42,6 +50,13 @@
   color: var(--color-olive);
   text-align: center;
   margin: clamp(1.5rem, 2.5vw, 3rem) 0 clamp(2rem, 3.125vw, 3.75rem);
+}
+
+.main-collection__subheading {
+  text-align: center;
+  color: var(--color-body);
+  font-size: clamp(1rem, 0.94vw, 1.125rem);
+  margin-top: clamp(1rem, 1.5vw, 1.5rem);
 }
 
 .main-collection__grid {

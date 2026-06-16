@@ -26,6 +26,9 @@
   {%- endif -%}
 
   <div class="page-width">
+    {%- if section.settings.subheading != blank -%}
+      <p class="main-collection__subheading reveal" data-collection-subheading>{{ section.settings.subheading }}</p>
+    {%- endif -%}
     <h2 class="main-collection__heading reveal" data-collection-title>
       {%- if section.settings.heading != blank -%}
         {{ section.settings.heading }}
@@ -93,6 +96,7 @@
 
   var tabsContainer = section.querySelector('[data-collection-tabs]');
   var titleEl = section.querySelector('[data-collection-title]');
+  var subheadingEl = section.querySelector('[data-collection-subheading]');
   var contentEl = section.querySelector('[data-collection-content]');
   if (!tabsContainer || !titleEl || !contentEl) return;
 
@@ -190,6 +194,7 @@
   "settings": [
     { "type": "checkbox", "id": "show_tabs", "label": "Show collection tabs", "default": true },
     { "type": "text", "id": "heading", "label": "Default heading", "default": "Probiotic Feminine Products" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Shop our best-selling products, all packed with our hunger-quieting probiotic blend." },
     { "type": "text", "id": "badge_text", "label": "Card badge", "default": "Subscribe & Save 15%" },
     {
       "type": "range",

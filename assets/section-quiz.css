@@ -38,7 +38,10 @@
 }
 
 .quiz__card {
-  background: var(--color-white);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: var(--radius-md);
   box-shadow: 0 24px 60px rgba(68, 84, 56, 0.1);
   padding: clamp(2rem, 3.5vw, 4rem) clamp(1.5rem, 4vw, 4.5rem);
@@ -91,7 +94,8 @@
   align-items: center;
   padding: 0.9375rem 1.875rem;
   border-radius: 999px;
-  border: 1px solid var(--color-accent);
+  border: 1px solid var(--color-light-green);
+  background: var(--color-offwhite);
   color: var(--color-olive);
   font-size: 1.0625rem;
   cursor: pointer;
@@ -105,8 +109,9 @@
 }
 
 .quiz__option.is-selected {
-  background: var(--color-accent);
+  background: var(--color-primary);
   color: var(--color-white);
+  border-color: var(--color-primary);
 }
 
 .quiz__nav {

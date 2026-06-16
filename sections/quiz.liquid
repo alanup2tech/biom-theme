@@ -33,7 +33,7 @@
                 {%- if step_index > 1 -%}
                   <button type="button" class="quiz__back" data-quiz-back>Back</button>
                 {%- endif -%}
-                <button type="button" class="btn" data-quiz-next>
+                <button type="button" class="btn btn--dark" data-quiz-next>
                   {%- if step_index == step_count -%}{{ section.settings.finish_label | default: 'See My Results' }}{%- else -%}{{ section.settings.continue_label | default: 'Continue' }}{%- endif -%}
                 </button>
               </div>
