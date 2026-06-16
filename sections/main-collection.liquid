@@ -39,19 +39,52 @@
         {%- if collection.products.size > 0 -%}
           <div class="main-collection__grid">
             {%- liquid
-              assign promo_pos = section.settings.promo_position
               assign idx = 0
             -%}
             {%- for product in collection.products -%}
               {%- assign idx = idx | plus: 1 -%}
-              {%- if section.settings.promo_image != blank and idx == promo_pos and paginate.current_page == 1 -%}
-                <div class="main-collection__promo">
-                  <img width="1200" height="900" src="{{ section.settings.promo_image | image_url: width: 1720 }}" alt="" loading="lazy">
-                  {%- if section.settings.promo_text != blank -%}
-                    <div class="main-collection__promo-text">{{ section.settings.promo_text }}</div>
-                  {%- endif -%}
-                </div>
-              {%- endif -%}
+
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'promo_text_button' and block.settings.position == idx and paginate.current_page == 1 -%}
+                  <div class="promo-tile promo-tile--text-btn" {{ block.shopify_attributes }}>
+                    <div class="promo-tile__media">
+                      {%- if block.settings.image != blank -%}
+                        <img src="{{ block.settings.image | image_url: width: 800 }}" alt="" loading="lazy" width="600" height="750">
+                      {%- else -%}
+                        <img src="{{ 'ecosystem-hands.png' | asset_url }}" alt="" loading="lazy" width="600" height="750">
+                      {%- endif -%}
+                    </div>
+                    <div class="promo-tile__content">
+                      <h3 class="promo-tile__heading">{{ block.settings.heading }}</h3>
+                      {%- if block.settings.button_label != blank -%}
+                        <a class="btn promo-tile__btn" href="{{ block.settings.button_link }}">{{ block.settings.button_label }}</a>
+                      {%- endif -%}
+                    </div>
+                  </div>
+                {%- elsif block.type == 'promo_bullets' and block.settings.position == idx and paginate.current_page == 1 -%}
+                  <div class="promo-tile promo-tile--bullets" {{ block.shopify_attributes }}>
+                    <div class="promo-tile__content">
+                      <h3 class="promo-tile__heading">{{ block.settings.heading }}</h3>
+                      {%- assign bullet_lines = block.settings.bullets | split: '\n' -%}
+                      <ul class="promo-tile__bullets">
+                        {%- for line in bullet_lines -%}
+                          {%- if line != blank -%}
+                            <li class="promo-tile__bullet">{{ line }}</li>
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </ul>
+                    </div>
+                    <div class="promo-tile__media">
+                      {%- if block.settings.image != blank -%}
+                        <img src="{{ block.settings.image | image_url: width: 800 }}" alt="" loading="lazy" width="600" height="750">
+                      {%- else -%}
+                        <img src="{{ 'ecosystem-hands.png' | asset_url }}" alt="" loading="lazy" width="600" height="750">
+                      {%- endif -%}
+                    </div>
+                  </div>
+                {%- endif -%}
+              {%- endfor -%}
+
               {% render 'card-product', product: product, badge: section.settings.badge_text %}
             {%- endfor -%}
           </div>
@@ -199,23 +232,6 @@
       "step": 2,
       "default": 12,
       "label": "Products per page"
-    },
-    { "type": "header", "content": "Promo tile" },
-    { "type": "image_picker", "id": "promo_image", "label": "Promo image" },
-    {
-      "type": "richtext",
-      "id": "promo_text",
-      "label": "Promo text",
-      "default": "<p>Find the <strong>Probiotic</strong> That Fits Your Needs</p>"
-    },
-    {
-      "type": "range",
-      "id": "promo_position",
-      "min": 1,
-      "max": 12,
-      "step": 1,
-      "default": 5,
-      "label": "Promo tile grid position"
     }
   ],
   "blocks": [
@@ -223,17 +239,29 @@
       "type": "tab",
       "name": "Collection tab",
       "settings": [
-        {
-          "type": "collection",
-          "id": "collection",
-          "label": "Collection"
-        },
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "Tab label",
-          "default": "Tab"
-        }
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "text", "id": "heading", "label": "Tab label", "default": "Tab" }
+      ]
+    },
+    {
+      "type": "promo_text_button",
+      "name": "Promo: Image + Text + Button",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Promo heading" },
+        { "type": "text", "id": "button_label", "label": "Button label", "default": "Take the Gut Health Quiz" },
+        { "type": "url", "id": "button_link", "label": "Button link" },
+        { "type": "range", "id": "position", "label": "Grid position", "min": 1, "max": 24, "step": 1, "default": 5 }
+      ]
+    },
+    {
+      "type": "promo_bullets",
+      "name": "Promo: Image + Bullets",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Promo heading" },
+        { "type": "textarea", "id": "bullets", "label": "Bullet points (one per line)", "default": "First bullet\nSecond bullet\nThird bullet" },
+        { "type": "range", "id": "position", "label": "Grid position", "min": 1, "max": 24, "step": 1, "default": 8 }
       ]
     }
   ],
