@@ -17,7 +17,52 @@
         "products_per_page": 12,
         "promo_text": "<p>Find the <strong>Probiotic</strong> That Fits Your Needs</p>",
         "promo_position": 5
-      }
+      },
+      "blocks": {
+        "tab_1": {
+          "type": "tab",
+          "settings": {
+            "collection": "best-sellers",
+            "heading": "Best Sellers"
+          }
+        },
+        "tab_2": {
+          "type": "tab",
+          "settings": {
+            "collection": "feminine-hygiene-health",
+            "heading": "Feminine Hygiene & Health"
+          }
+        },
+        "tab_3": {
+          "type": "tab",
+          "settings": {
+            "collection": "gut-health",
+            "heading": "Gut Health"
+          }
+        },
+        "tab_4": {
+          "type": "tab",
+          "settings": {
+            "collection": "anti-oxidant-brain-support",
+            "heading": "Anti-Oxidant & Brain Support"
+          }
+        },
+        "tab_5": {
+          "type": "tab",
+          "settings": {
+            "collection": "skin-brightening",
+            "heading": "Skin Brightening"
+          }
+        },
+        "tab_6": {
+          "type": "tab",
+          "settings": {
+            "collection": "all",
+            "heading": "Shop All"
+          }
+        }
+      },
+      "block_order": ["tab_1", "tab_2", "tab_3", "tab_4", "tab_5", "tab_6"]
     },
     "cta": {
       "type": "ecosystem-cta",
