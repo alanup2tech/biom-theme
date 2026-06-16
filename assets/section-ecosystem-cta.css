@@ -49,22 +49,24 @@
 .ecosystem-cta__text {
   font-family: var(--font-grift);
   font-size: clamp(1rem, 0.94vw, 1.125rem);
-  color: var(--color-white);
+  color: #757575;
   max-width: 707px;
   line-height: 1.35;
 }
 
 .ecosystem-cta__btn {
-  background: transparent;
+  background: var(--color-accent);
   color: var(--color-white);
   align-self: center;
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 0.05em;
+  padding: 0.9375rem 1.875rem;
+  border-radius: 10px;
 }
 
 .ecosystem-cta__btn:hover {
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 @media screen and (max-width: 989px) {
