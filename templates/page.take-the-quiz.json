@@ -1,0 +1,32 @@
+{
+  "sections": {
+    "quiz": {
+      "type": "quiz",
+      "blocks": {
+        "s1":  { "type": "step", "settings": { "question": "What Matters Most To You Right Now?",               "hint": "We'll find products that are the best fit. Select all that apply.",                                  "options": "Gut Health\nGeneral Health\nFocus/Mental Clarity\nSleep\nEnergy",                                                                               "multi_select": true  } },
+        "s2":  { "type": "step", "settings": { "question": "How would you describe your digestion?",            "hint": "Select the option that fits best.",                                                                  "options": "Mostly comfortable\nOccasional bloating\nFrequently irregular\nSensitive to many foods",                                                         "multi_select": false } },
+        "s3":  { "type": "step", "settings": { "question": "Are you currently using a GLP-1 medication?",      "hint": "This helps us match gut support for your metabolism.",                                               "options": "Yes\nNo\nConsidering it",                                                                                                                        "multi_select": false } },
+        "s4":  { "type": "step", "settings": { "question": "What's your top wellness goal?",                    "hint": "Select all that apply.",                                                                             "options": "Weight management\nImmunity\nDaily balance\nWomen's health\nHealthy aging",                                                                        "multi_select": true  } },
+        "s5":  { "type": "step", "settings": { "question": "How would you rate your current energy levels?",    "hint": "Be honest — we'll tailor suggestions accordingly.",                                                 "options": "High — I feel energised\nModerate — okay most days\nLow — I'm often fatigued\nVery low — fatigue affects my life",                               "multi_select": false } },
+        "s6":  { "type": "step", "settings": { "question": "Do you experience bloating or gas?",                "hint": "Select the option that fits best.",                                                                  "options": "Rarely\nOccasionally\nOften\nAlmost every day",                                                                                                  "multi_select": false } },
+        "s7":  { "type": "step", "settings": { "question": "How's your sleep quality?",                         "hint": "Select all that apply.",                                                                             "options": "I sleep well\nTrouble falling asleep\nTrouble staying asleep\nUnrefreshing sleep",                                                               "multi_select": true  } },
+        "s8":  { "type": "step", "settings": { "question": "Do you take any other supplements?",                "hint": "Select all that apply.",                                                                             "options": "Multivitamin\nOmega-3\nMagnesium\nNo other supplements",                                                                                          "multi_select": true  } },
+        "s9":  { "type": "step", "settings": { "question": "How long have you had gut or health concerns?",     "hint": "Select the option that fits best.",                                                                  "options": "Less than 3 months\n3–12 months\n1–3 years\nMore than 3 years",                                                                                  "multi_select": false } },
+        "s10": { "type": "step", "settings": { "question": "What does your diet look like most days?",          "hint": "Select the option closest to your typical diet.",                                                    "options": "Whole foods focused\nMixed — some processed foods\nHigh in processed foods\nVegetarian or vegan",                                                 "multi_select": false } }
+      },
+      "block_order": ["s1","s2","s3","s4","s5","s6","s7","s8","s9","s10"],
+      "settings": {
+        "continue_label": "CONTINUE",
+        "finish_label": "See My Results",
+        "result_heading": "Your Microbiome Match",
+        "result_text": "Based on your answers, we recommend starting with our microbiome systems below.",
+        "result_button": "Shop My Formula"
+      }
+    },
+    "cta": {
+      "type": "cta-band",
+      "settings": {}
+    }
+  },
+  "order": ["quiz", "cta"]
+}

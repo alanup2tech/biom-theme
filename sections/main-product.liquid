@@ -1,0 +1,258 @@
+{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign has_subscription = false
+  if product.selling_plan_groups.size > 0
+    assign has_subscription = true
+    assign first_group = product.selling_plan_groups | first
+    assign first_plan = first_group.selling_plans | first
+    assign plan_allocation = nil
+    for allocation in current_variant.selling_plan_allocations
+      if allocation.selling_plan.id == first_plan.id
+        assign plan_allocation = allocation
+        break
+      endif
+    endfor
+  endif
+-%}
+
+<section class="main-product">
+  <div class="page-width">
+    <div class="main-product__grid">
+      <div class="product-gallery">
+        <div class="product-gallery__main" data-gallery-main>
+          {%- if product.featured_media -%}
+            <img
+              src="{{ product.featured_media | image_url: width: 1100 }}"
+              alt="{{ product.featured_media.alt | default: product.title | escape }}"
+              width="550"
+              height="600"
+              loading="eager"
+              fetchpriority="high"
+              data-gallery-image
+            >
+          {%- else -%}
+            <img width="600" height="450" src="{{ 'product-biom.png' | asset_url }}" alt="{{ product.title | escape }}" data-gallery-image>
+          {%- endif -%}
+        </div>
+
+        {%- if product.media.size > 1 -%}
+          <div class="product-gallery__thumbs">
+            {%- for media in product.media -%}
+              <button
+                class="product-gallery__thumb{% if forloop.first %} is-active{% endif %}"
+                type="button"
+                data-gallery-thumb="{{ media | image_url: width: 1100 }}"
+                aria-label="View image {{ forloop.index }}"
+              >
+                <img src="{{ media | image_url: width: 168 }}" alt="" width="84" height="84" loading="lazy">
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.feature_pills != blank -%}
+          <div class="product-feature-pills">
+            {%- assign pills = section.settings.feature_pills | newline_to_br | split: '<br />' -%}
+            {%- for pill in pills -%}
+              <span>{{ pill | strip }}</span>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="product-info">
+        <h1 class="product-info__title">{{ product.title }}</h1>
+        <div class="product-info__stars">{{ 'stars-product.svg' | inline_asset_content }}</div>
+
+        <div class="product-info__desc">
+          {%- if section.settings.short_description != blank -%}
+            {{ section.settings.short_description }}
+          {%- else -%}
+            {{ product.description | truncatewords: 60 }}
+          {%- endif -%}
+        </div>
+
+        {%- form 'product', product, data-ajax-cart: '' -%}
+          <input type="hidden" name="id" value="{{ current_variant.id }}">
+
+          <p class="purchase-options__label">{{ section.settings.purchase_label | default: 'Purchase option' }}</p>
+
+          {%- if has_subscription -%}
+            <label class="purchase-option is-selected" data-purchase-option>
+              <input
+                type="radio"
+                name="selling_plan"
+                value="{{ first_plan.id }}"
+                checked
+                data-price="{{ plan_allocation.price | default: current_variant.price | money }}"
+                data-label="{{ section.settings.subscribe_button_prefix | default: 'Subscribe & Save' }}"
+              >
+              <span class="purchase-option__row">
+                <span class="purchase-option__left">
+                  <span class="purchase-option__radio" aria-hidden="true"></span>
+                  <span class="purchase-option__name">Subscribe &amp;</span>
+                  <span class="purchase-option__chip">Save {{ section.settings.subscribe_discount | default: '15%' }}</span>
+                </span>
+                <span class="purchase-option__price">{{ plan_allocation.price | default: current_variant.price | money }}</span>
+              </span>
+              <span class="purchase-option__perks">
+                <span class="purchase-option__perk">{{ 'icon-check-green.svg' | inline_asset_content }} Skip, Pause, Swap, or Cancel</span>
+                <span class="purchase-option__perk">{{ 'icon-check-green.svg' | inline_asset_content }} Cancel anytime</span>
+                <span class="purchase-option__perk">{{ 'icon-check-green.svg' | inline_asset_content }} {{ section.settings.subscribe_discount | default: '15%' }} off every order</span>
+              </span>
+            </label>
+
+            <label class="purchase-option" data-purchase-option>
+              <input
+                type="radio"
+                name="selling_plan"
+                value=""
+                data-price="{{ current_variant.price | money }}"
+                data-label="{{ section.settings.onetime_button_prefix | default: 'Add to Cart' }}"
+              >
+              <span class="purchase-option__row">
+                <span class="purchase-option__left">
+                  <span class="purchase-option__radio" aria-hidden="true"></span>
+                  <span class="purchase-option__name">One time purchase</span>
+                </span>
+                <span class="purchase-option__price">{{ current_variant.price | money }}</span>
+              </span>
+            </label>
+          {%- else -%}
+            <label class="purchase-option is-selected" data-purchase-option>
+              <input
+                type="radio"
+                name="purchase_type"
+                value="one-time"
+                checked
+                data-price="{{ current_variant.price | money }}"
+                data-label="{{ section.settings.onetime_button_prefix | default: 'Add to Cart' }}"
+              >
+              <span class="purchase-option__row">
+                <span class="purchase-option__left">
+                  <span class="purchase-option__radio" aria-hidden="true"></span>
+                  <span class="purchase-option__name">One time purchase</span>
+                </span>
+                <span class="purchase-option__price">{{ current_variant.price | money }}</span>
+              </span>
+            </label>
+          {%- endif -%}
+
+          <div class="product-buy-row">
+            <div class="product-qty" data-product-qty>
+              <button type="button" data-qty-minus aria-label="Decrease quantity">&minus;</button>
+              <input type="number" name="quantity" value="1" min="1" aria-label="{{ 'products.product.quantity' | t }}">
+              <button type="button" data-qty-plus aria-label="Increase quantity">+</button>
+            </div>
+            <div class="product-buy-col">
+              <button
+                type="submit"
+                class="btn product-atc"
+                {% unless current_variant.available %}disabled{% endunless %}
+                data-atc-button
+              >
+                {%- if current_variant.available -%}
+                  <span data-atc-label>
+                    {%- if has_subscription -%}
+                      {{ section.settings.subscribe_button_prefix | default: 'Subscribe & Save' }} -
+                      {{ plan_allocation.price | default: current_variant.price | money }}
+                    {%- else -%}
+                      {{ section.settings.onetime_button_prefix | default: 'Add to Cart' }} - {{ current_variant.price | money }}
+                    {%- endif -%}
+                  </span>
+                {%- else -%}
+                  {{ 'products.product.sold_out' | t }}
+                {%- endif -%}
+              </button>
+              <p class="product-buy-note">{{ section.settings.guarantee_text }}</p>
+            </div>
+          </div>
+        {%- endform -%}
+
+        <div class="product-tabs" role="tablist">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'tab' -%}
+              <button
+                type="button"
+                role="tab"
+                class="{% if forloop.first %}is-active{% endif %}"
+                data-product-tab="tab-{{ block.id }}"
+                {{ block.shopify_attributes }}
+              >
+                {{ block.settings.title }}
+              </button>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'tab' -%}
+            <div class="product-tab-panel{% if forloop.first %} is-active{% endif %}" id="tab-{{ block.id }}" role="tabpanel">
+              {%- if block.settings.use_description -%}
+                {{ product.description }}
+              {%- else -%}
+                {{ block.settings.content }}
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="{{ 'product.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Product",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "short_description",
+      "label": "Short description",
+      "info": "Shown above purchase options; falls back to product description"
+    },
+    { "type": "text", "id": "purchase_label", "label": "Purchase options label", "default": "Purchase option" },
+    { "type": "text", "id": "subscribe_discount", "label": "Subscription discount label", "default": "15%" },
+    { "type": "text", "id": "subscribe_button_prefix", "label": "Subscribe button text", "default": "Subscribe & Save" },
+    { "type": "text", "id": "onetime_button_prefix", "label": "One-time button text", "default": "Add to Cart" },
+    {
+      "type": "text",
+      "id": "guarantee_text",
+      "label": "Guarantee text",
+      "default": "30-day risk-free guarantee. Free US shipping."
+    },
+    {
+      "type": "textarea",
+      "id": "feature_pills",
+      "label": "Feature pills",
+      "default": "3-IN-1 TRIBIOM TECHNOLOGY\nHEALTHY LIFE & LONGEVITY"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Description" },
+        { "type": "checkbox", "id": "use_description", "label": "Use product description", "default": false },
+        { "type": "richtext", "id": "content", "label": "Content" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product",
+      "blocks": [
+        { "type": "tab", "settings": { "title": "Description", "use_description": true } },
+        { "type": "tab", "settings": { "title": "Ingredients" } },
+        { "type": "tab", "settings": { "title": "Reviews" } },
+        { "type": "tab", "settings": { "title": "Benefits" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

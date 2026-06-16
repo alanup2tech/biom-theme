@@ -1,0 +1,125 @@
+{{ 'section-quiz.css' | asset_url | stylesheet_tag }}
+
+{%- assign step_count = 0 -%}
+{%- for block in section.blocks -%}
+  {%- if block.type == 'step' -%}{%- assign step_count = step_count | plus: 1 -%}{%- endif -%}
+{%- endfor -%}
+
+<section class="quiz-section noise">
+  <div class="page-width">
+    <div class="quiz" data-quiz data-steps="{{ step_count }}">
+      <div class="quiz__progress">
+        <div class="quiz__progress-bar" data-quiz-progress></div>
+      </div>
+      <p class="quiz__counter"><span data-quiz-current>1</span>/{{ step_count }}</p>
+
+      <div class="quiz__card">
+        {%- assign step_index = 0 -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'step' -%}
+            {%- assign step_index = step_index | plus: 1 -%}
+            <div class="quiz__step{% if step_index == 1 %} is-active{% endif %}" data-quiz-step="{{ step_index }}" {{ block.shopify_attributes }}>
+              <h2 class="quiz__question">{{ block.settings.question }}</h2>
+              {%- if block.settings.hint != blank -%}
+                <p class="quiz__hint">{{ block.settings.hint }}</p>
+              {%- endif -%}
+              <div class="quiz__options" data-multi="{{ block.settings.multi_select }}">
+                {%- assign options = block.settings.options | newline_to_br | split: '<br />' -%}
+                {%- for option in options -%}
+                  <button type="button" class="quiz__option">{{ option | strip }}</button>
+                {%- endfor -%}
+              </div>
+              <div class="quiz__nav">
+                {%- if step_index > 1 -%}
+                  <button type="button" class="quiz__back" data-quiz-back>Back</button>
+                {%- endif -%}
+                <button type="button" class="btn" data-quiz-next>
+                  {%- if step_index == step_count -%}{{ section.settings.finish_label | default: 'See My Results' }}{%- else -%}{{ section.settings.continue_label | default: 'Continue' }}{%- endif -%}
+                </button>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+
+        <div class="quiz__step" data-quiz-step="result">
+          <div class="quiz__result">
+            <h2 class="quiz__question">{{ section.settings.result_heading | default: 'Your Microbiome Match' }}</h2>
+            <p class="quiz__hint">{{ section.settings.result_text }}</p>
+            <a class="btn" href="{{ section.settings.result_link | default: routes.all_products_collection_url }}">
+              {{ section.settings.result_button | default: 'Shop My Formula' }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="{{ 'quiz.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Quiz",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "continue_label", "label": "Continue label", "default": "Continue" },
+    { "type": "text", "id": "finish_label", "label": "Finish label", "default": "See My Results" },
+    { "type": "text", "id": "result_heading", "label": "Result heading", "default": "Your Microbiome Match" },
+    {
+      "type": "textarea",
+      "id": "result_text",
+      "label": "Result text",
+      "default": "Based on your answers, we recommend starting with our microbiome systems below."
+    },
+    { "type": "text", "id": "result_button", "label": "Result button", "default": "Shop My Formula" },
+    { "type": "url", "id": "result_link", "label": "Result link" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Question step",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "What Matters Most To You Right Now?" },
+        {
+          "type": "text",
+          "id": "hint",
+          "label": "Hint",
+          "default": "We'll find products that are the best fit. Select all that apply."
+        },
+        {
+          "type": "textarea",
+          "id": "options",
+          "label": "Options (one per line)",
+          "default": "Gut Health\nGeneral Health\nFocus/Mental Clarity\nSleep\nEnergy"
+        },
+        { "type": "checkbox", "id": "multi_select", "label": "Allow multiple selections", "default": true }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Quiz",
+      "blocks": [
+        { "type": "step" },
+        {
+          "type": "step",
+          "settings": {
+            "question": "How would you describe your digestion?",
+            "hint": "Select the option that fits best.",
+            "options": "Mostly comfortable\nOccasional bloating\nFrequently irregular\nSensitive to many foods",
+            "multi_select": false
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "question": "What's your top wellness goal?",
+            "hint": "Select all that apply.",
+            "options": "Weight management\nImmunity\nDaily balance\nWomen's health"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

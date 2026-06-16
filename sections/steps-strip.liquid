@@ -1,0 +1,57 @@
+{{ 'section-content-bands.css' | asset_url | stylesheet_tag }}
+
+<div class="steps-strip__wrap">
+  <div class="page-width">
+    <div class="steps-strip reveal">
+      {%- for block in section.blocks -%}
+        <div class="steps-strip__step" {{ block.shopify_attributes }}>
+          <div class="steps-strip__icon-wrap">
+            {%- if block.settings.icon != blank -%}
+              <img src="{{ block.settings.icon | image_url: width: 160 }}" alt="" width="80" height="80" loading="lazy">
+            {%- elsif block.settings.icon_asset != blank -%}
+              <img src="{{ block.settings.icon_asset | asset_url }}" alt="" width="80" height="80" loading="lazy">
+            {%- else -%}
+              <span class="steps-strip__num">{{ forloop.index }}</span>
+            {%- endif -%}
+          </div>
+          <div>
+            <p class="steps-strip__title">{{ block.settings.title }}</p>
+            <p class="steps-strip__text">{{ block.settings.text }}</p>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Steps strip",
+  "tag": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "image_picker", "id": "icon", "label": "Icon image" },
+        { "type": "text", "id": "icon_asset", "label": "Icon asset filename", "info": "Fallback theme asset when no image is uploaded" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Culture" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Steps strip",
+      "blocks": [
+        { "type": "step", "settings": { "title": "Culture",    "text": "Beneficial microbes are grown in a gut-like fermentation environment.", "icon_asset": "icon-step-culture.png" } },
+        { "type": "step", "settings": { "title": "Enrich",     "text": "Microbial nutrients and postbiotic compounds are layered in.",          "icon_asset": "icon-step-select.png" } },
+        { "type": "step", "settings": { "title": "Stabilize",  "text": "The ecosystem is stabilized for delivery to your gut.",                 "icon_asset": "icon-step-condition.png" } },
+        { "type": "step", "settings": { "title": "Deliver",    "text": "Potent microbiome support arrives precisely where your gut needs it.",   "icon_asset": "icon-step-deliver.png" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,128 @@
+{{ 'section-testimonials.css' | asset_url | stylesheet_tag }}
+
+<section class="testimonials noise">
+  <h2 class="testimonials__heading reveal">{{ section.settings.heading }}</h2>
+
+  <div data-carousel {% if section.settings.autoplay %}data-carousel-autoplay="4500"{% endif %}>
+    <div class="testimonials__track" data-carousel-track>
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'video' -%}
+            <div class="testimonial-card testimonial-card--video" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                <img width="1000" height="750" src="{{ block.settings.image | image_url: width: 1000 }}" alt="{{ block.settings.name | escape }}" loading="lazy">
+              {%- elsif block.settings.image_asset != blank -%}
+                <img width="600" height="450" src="{{ block.settings.image_asset | asset_url }}" alt="{{ block.settings.name | escape }}" loading="lazy">
+              {%- endif -%}
+              <span class="testimonial-card__name">
+                {{ block.settings.name }}
+                {{ 'icon-verified.svg' | inline_asset_content }}
+              </span>
+              {%- if block.settings.video_url != blank -%}
+                <a class="testimonial-card__play" href="{{ block.settings.video_url }}" target="_blank" rel="noopener" aria-label="Play video">
+                  {{ 'icon-play-circle.svg' | inline_asset_content }}
+                </a>
+              {%- else -%}
+                <span class="testimonial-card__play">{{ 'icon-play-circle.svg' | inline_asset_content }}</span>
+              {%- endif -%}
+            </div>
+
+          {%- when 'quote' -%}
+            <div class="testimonial-card testimonial-card--quote" {{ block.shopify_attributes }}>
+              <div class="testimonial-card__panel">
+                <p class="testimonial-card__quote">&ldquo;{{ block.settings.quote }}&rdquo;</p>
+                <span class="testimonial-card__stars">{{ 'stars-5.svg' | inline_asset_content }}</span>
+                <div class="testimonial-card__reveal">
+                  {%- if block.settings.product_image != blank -%}
+                    <img width="300" height="225" src="{{ block.settings.product_image | image_url: width: 300 }}" alt="" loading="lazy">
+                  {%- elsif block.settings.product_asset != blank -%}
+                    <img width="600" height="450" src="{{ block.settings.product_asset | asset_url }}" alt="" loading="lazy">
+                  {%- endif -%}
+                  <a class="testimonial-card__shop" href="{{ block.settings.link | default: routes.all_products_collection_url }}">
+                    {{ block.settings.button_label | default: 'Shop Now' }}
+                  </a>
+                </div>
+              </div>
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="testimonials__nav">
+      <button type="button" class="testimonials__prev" data-carousel-prev aria-label="{{ 'accessibility.previous_slide' | t }}">
+        {{ 'icon-carousel-next.svg' | inline_asset_content }}
+      </button>
+      <button type="button" class="testimonials__next" data-carousel-next aria-label="{{ 'accessibility.next_slide' | t }}">
+        {{ 'icon-carousel-next.svg' | inline_asset_content }}
+      </button>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Trusted by Thousands of Customers Across the U.S."
+    },
+    { "type": "checkbox", "id": "autoplay", "label": "Autoplay", "default": false }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "image_asset", "label": "Image asset filename" },
+        { "type": "text", "id": "name", "label": "Customer name", "default": "Sarah M" },
+        { "type": "url", "id": "video_url", "label": "Video URL" }
+      ]
+    },
+    {
+      "type": "quote",
+      "name": "Quote card",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "I finally found a probiotic that actually supports my digestion. My bloating improved noticeably in the first few weeks."
+        },
+        { "type": "image_picker", "id": "product_image", "label": "Product image (hover reveal)" },
+        { "type": "text", "id": "product_asset", "label": "Product asset filename" },
+        { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop Now" },
+        { "type": "url", "id": "link", "label": "Button link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        { "type": "video", "settings": { "name": "Sarah M", "image_asset": "testimonial-sarah.png" } },
+        {
+          "type": "quote",
+          "settings": {
+            "quote": "I finally found a probiotic that actually supports my digestion. My bloating improved noticeably in the first few weeks.",
+            "product_asset": "testimonial-product-2.png"
+          }
+        },
+        { "type": "video", "settings": { "name": "Catherin", "image_asset": "testimonial-catherin.png" } },
+        {
+          "type": "quote",
+          "settings": {
+            "quote": "My digestion feels more balanced after starting the 90-day reset. Highly recommend for anyone wanting real gut support.",
+            "product_asset": "testimonial-product-1.png"
+          }
+        },
+        { "type": "video", "settings": { "name": "Sarah M", "image_asset": "testimonial-sarah.png" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

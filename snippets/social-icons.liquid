@@ -1,0 +1,42 @@
+{%- comment -%}
+  Renders the social icon row.
+  Usage: {% render 'social-icons' %} or {% render 'social-icons', white: true %}
+{%- endcomment -%}
+{%- liquid
+  assign suffix = ''
+  if white
+    assign suffix = '-w'
+  endif
+-%}
+<div class="social-icons">
+  {%- if settings.social_facebook_link != blank -%}
+    <a href="{{ settings.social_facebook_link }}" target="_blank" rel="noopener" aria-label="Facebook">
+      {{ 'icon-social-facebook' | append: suffix | append: '.svg' | inline_asset_content }}
+    </a>
+  {%- endif -%}
+  {%- if settings.social_twitter_link != blank -%}
+    <a href="{{ settings.social_twitter_link }}" target="_blank" rel="noopener" aria-label="X (Twitter)">
+      {{ 'icon-social-twitter' | append: suffix | append: '.svg' | inline_asset_content }}
+    </a>
+  {%- endif -%}
+  {%- if settings.social_linkedin_link != blank -%}
+    <a href="{{ settings.social_linkedin_link }}" target="_blank" rel="noopener" aria-label="LinkedIn">
+      {{ 'icon-social-linkedin' | append: suffix | append: '.svg' | inline_asset_content }}
+    </a>
+  {%- endif -%}
+  {%- if settings.social_instagram_link != blank -%}
+    <a href="{{ settings.social_instagram_link }}" target="_blank" rel="noopener" aria-label="Instagram">
+      {{ 'icon-social-instagram' | append: suffix | append: '.svg' | inline_asset_content }}
+    </a>
+  {%- endif -%}
+  {%- if settings.social_youtube_link != blank -%}
+    <a href="{{ settings.social_youtube_link }}" target="_blank" rel="noopener" aria-label="YouTube">
+      {{ 'icon-social-youtube' | append: suffix | append: '.svg' | inline_asset_content }}
+    </a>
+  {%- endif -%}
+  {%- if settings.social_pinterest_link != blank -%}
+    <a href="{{ settings.social_pinterest_link }}" target="_blank" rel="noopener" aria-label="Pinterest">
+      {{ 'icon-social-pinterest' | append: suffix | append: '.svg' | inline_asset_content }}
+    </a>
+  {%- endif -%}
+</div>

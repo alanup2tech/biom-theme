@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0">
+    <meta name="theme-color" content="#445438">
+
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {% render 'meta-tags' %}
+
+    {{ 'dm-sans-latin.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+
+    {% style %}
+      @font-face {
+        font-family: 'DM Sans';
+        font-style: normal;
+        font-weight: 100 1000;
+        font-display: swap;
+        src: url('{{ 'dm-sans-latin.woff2' | asset_url }}') format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: 'DM Sans';
+        font-style: normal;
+        font-weight: 100 1000;
+        font-display: swap;
+        src: url('{{ 'dm-sans-latin-ext.woff2' | asset_url }}') format('woff2');
+        unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      {%- comment -%}
+        Licensed brand fonts — TT Gateral (display serif) and Grift.
+        Upload the licensed woff2 files to /assets with these exact names
+        and they activate automatically; serif/sans fallbacks render until then.
+        Filenames are assigned to variables so the theme works before the
+        licensed files are uploaded.
+      {%- endcomment -%}
+      {%- liquid
+        assign brand_fonts = 'tt-gateral-semibold:TT Gateral:600,tt-gateral-extrabold:TT Gateral:800,grift-regular:Grift:400,grift-semibold:Grift:600,grift-bold:Grift:700' | split: ','
+      -%}
+      {%- for font in brand_fonts -%}
+        {%- assign parts = font | split: ':' -%}
+        {%- assign font_file = parts[0] | append: '.woff2' -%}
+        @font-face {
+          font-family: '{{ parts[1] }}';
+          font-style: normal;
+          font-weight: {{ parts[2] }};
+          font-display: swap;
+          src: url('{{ font_file | asset_url }}') format('woff2');
+        }
+      {%- endfor -%}
+    {% endstyle %}
+
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+
+    {{ content_for_header }}
+
+    <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+  </head>
+
+  <body class="template-{{ request.page_type | handle }}">
+    <a class="skip-to-content-link visually-hidden" href="#MainContent">
+      {{ 'accessibility.skip_to_text' | t }}
+    </a>
+
+    {% sections 'header-group' %}
+
+    <main id="MainContent" class="content-for-layout" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% sections 'footer-group' %}
+
+    {% section 'cart-drawer' %}
+
+    <script>
+      window.routes = {
+        cart_add_url: '{{ routes.cart_add_url }}',
+        cart_change_url: '{{ routes.cart_change_url }}',
+        cart_update_url: '{{ routes.cart_update_url }}',
+        cart_url: '{{ routes.cart_url }}',
+        predictive_search_url: '{{ routes.predictive_search_url }}',
+      };
+      window.shopSettings = {
+        moneyFormat: {{ shop.money_format | json }},
+      };
+    </script>
+  </body>
+</html>

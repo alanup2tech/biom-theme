@@ -1,0 +1,89 @@
+{
+  "general": {
+    "404": {
+      "title": "Page not found",
+      "subtext": "404",
+      "continue_shopping": "Continue shopping"
+    },
+    "search": {
+      "search": "Search",
+      "placeholder": "Search our store",
+      "no_results": "No results found for \"{{ terms }}\". Check the spelling or use a different word or phrase."
+    },
+    "cart": {
+      "title": "Your cart",
+      "empty": "Your cart is empty",
+      "checkout": "Check out",
+      "remove": "Remove",
+      "subtotal": "Subtotal",
+      "continue_shopping": "Continue shopping",
+      "taxes_and_shipping_at_checkout": "Taxes and shipping calculated at checkout"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "page": "Page {{ number }}"
+    }
+  },
+  "accessibility": {
+    "skip_to_text": "Skip to content",
+    "close": "Close",
+    "open_menu": "Open menu",
+    "next_slide": "Next slide",
+    "previous_slide": "Previous slide",
+    "cart_count": "Cart item count"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "quantity": "Quantity",
+      "regular_price": "Regular price",
+      "sale_price": "Sale price",
+      "view_details": "View details",
+      "vendor": "Vendor"
+    }
+  },
+  "templates": {
+    "collection": {
+      "title": "Collection",
+      "empty": "No products found",
+      "filter_and_sort": "Filter and sort",
+      "sort_by": "Sort by"
+    },
+    "search": {
+      "title": "Search results",
+      "results_for": "Results for \"{{ terms }}\""
+    },
+    "contact": {
+      "form": {
+        "name": "Name",
+        "email": "Email",
+        "phone": "Phone number",
+        "message": "Message",
+        "send": "Send",
+        "post_success": "Thanks for contacting us. We'll get back to you as soon as possible."
+      }
+    }
+  },
+  "newsletter": {
+    "label": "Email",
+    "button_label": "Subscribe",
+    "success": "Thanks for subscribing"
+  },
+  "customer": {
+    "login": {
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "sign_in": "Sign in",
+      "forgot_password": "Forgot your password?",
+      "create_account": "Create account"
+    },
+    "account": {
+      "title": "Account",
+      "log_out": "Log out"
+    }
+  }
+}

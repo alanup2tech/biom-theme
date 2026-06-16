@@ -1,0 +1,56 @@
+{{ 'component-aux.css' | asset_url | stylesheet_tag }}
+
+<section class="aux-page">
+  <div class="page-width">
+    <h1 class="aux-page__heading">Order {{ order.name }}</h1>
+    <p class="aux-page__sub">Placed on {{ order.created_at | date: '%B %d, %Y at %I:%M %p' }}</p>
+
+    <table class="account-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%- for line_item in order.line_items -%}
+          <tr>
+            <td>{{ line_item.title }}</td>
+            <td>{{ line_item.final_price | money }}</td>
+            <td>{{ line_item.quantity }}</td>
+            <td>{{ line_item.final_line_price | money }}</td>
+          </tr>
+        {%- endfor -%}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3"><strong>{{ 'general.cart.subtotal' | t }}</strong></td>
+          <td>{{ order.line_items_subtotal_price | money }}</td>
+        </tr>
+        {%- for shipping_method in order.shipping_methods -%}
+          <tr>
+            <td colspan="3">Shipping ({{ shipping_method.title }})</td>
+            <td>{{ shipping_method.price | money }}</td>
+          </tr>
+        {%- endfor -%}
+        <tr>
+          <td colspan="3"><strong>Total</strong></td>
+          <td><strong>{{ order.total_price | money }}</strong></td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div style="margin-top: 2rem;">
+      <a class="btn" href="{{ routes.account_url }}">Back to account</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Order",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,134 @@
+/* Quiz — Figma 3721:5087 / 3740:2281 multi-step form */
+
+.quiz-section {
+  background: var(--color-cream);
+  padding: clamp(2rem, 3.125vw, 3.75rem) 0 clamp(3rem, 5.2vw, 6.25rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.quiz {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.quiz__progress {
+  height: 6px;
+  background: rgba(68, 84, 56, 0.15);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.quiz__progress-bar {
+  height: 100%;
+  width: 10%;
+  background: var(--color-accent);
+  border-radius: 999px;
+  transition: width var(--duration-long) var(--ease-spring);
+}
+
+.quiz__counter {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--color-body);
+  margin-bottom: 2rem;
+}
+
+.quiz__card {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  box-shadow: 0 24px 60px rgba(68, 84, 56, 0.1);
+  padding: clamp(2rem, 3.5vw, 4rem) clamp(1.5rem, 4vw, 4.5rem);
+}
+
+.quiz__step {
+  display: none;
+}
+
+.quiz__step.is-active {
+  display: block;
+  animation: quiz-in 0.45s var(--ease-spring);
+}
+
+@keyframes quiz-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.quiz__question {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(1.75rem, 2.5vw, 3rem);
+  color: var(--color-ink);
+  margin-bottom: 1.25rem;
+}
+
+.quiz__hint {
+  color: var(--color-body);
+  font-size: clamp(1rem, 0.94vw, 1.125rem);
+  margin-bottom: 2rem;
+  line-height: 1.4;
+}
+
+.quiz__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.quiz__option {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.9375rem 1.875rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-accent);
+  color: var(--color-olive);
+  font-size: 1.0625rem;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color var(--duration-short), color var(--duration-short),
+    transform var(--duration-short) var(--ease-spring);
+}
+
+.quiz__option:hover {
+  transform: translateY(-2px);
+}
+
+.quiz__option.is-selected {
+  background: var(--color-accent);
+  color: var(--color-white);
+}
+
+.quiz__nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.quiz__back {
+  color: var(--color-body);
+  font-weight: 600;
+  padding: 1rem;
+}
+
+.quiz__back:hover {
+  color: var(--color-ink);
+}
+
+.quiz__result {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}

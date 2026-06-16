@@ -1,0 +1,98 @@
+/* FAQ — Figma 3793:2404 heading + 3793:2463 accordion */
+
+.faq-section {
+  background: var(--color-white);
+  padding: clamp(3rem, 5.2vw, 6.25rem) 0;
+}
+
+.faq-section__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 559px) 1fr;
+  gap: clamp(2rem, 5.4vw, 6.4375rem);
+  align-items: start;
+}
+
+.faq-section__heading {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(2rem, 2.5vw, 3rem);
+  color: var(--color-olive);
+  margin-bottom: 1.875rem;
+}
+
+.faq-section__text {
+  color: var(--color-body);
+  font-size: clamp(1rem, 0.94vw, 1.125rem);
+  line-height: 1.45;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.faq-item {
+  border-radius: var(--radius-md);
+  background: #f5f5f5;
+  transition: background-color var(--duration-default);
+  overflow: hidden;
+}
+
+.faq-item[open] {
+  background: rgba(122, 160, 95, 0.12);
+}
+
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.5625rem 1.875rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: clamp(1.125rem, 1.25vw, 1.5rem);
+  color: var(--color-ink);
+  transition: color var(--duration-short);
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item[open] summary {
+  color: var(--color-accent);
+  padding-bottom: 0.75rem;
+}
+
+.faq-item summary .chevron {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  transition: transform var(--duration-default) var(--ease-spring);
+}
+
+.faq-item summary .chevron svg {
+  width: 100%;
+  height: 100%;
+}
+
+.faq-item[open] summary .chevron {
+  transform: rotate(180deg);
+}
+
+.faq-item__body {
+  padding: 0 1.875rem 1.5625rem;
+  color: var(--color-body);
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: 640px;
+}
+
+@media screen and (max-width: 989px) {
+  .faq-section__grid {
+    grid-template-columns: 1fr;
+  }
+}

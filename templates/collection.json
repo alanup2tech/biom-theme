@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "banner": {
+      "type": "collection-banner",
+      "settings": {}
+    },
+    "product_grid": {
+      "type": "main-collection",
+      "settings": {}
+    },
+    "cta": {
+      "type": "ecosystem-cta",
+      "settings": {}
+    }
+  },
+  "order": ["banner", "product_grid", "cta"]
+}

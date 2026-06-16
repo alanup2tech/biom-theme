@@ -1,0 +1,221 @@
+/* Cart page — Figma 3871:11963 "Your Shopping Cart" */
+
+.cart-hero {
+  background: var(--color-olive);
+  position: relative;
+  padding: clamp(3rem, 6vw, 7.5rem) var(--page-gutter) clamp(5rem, 9vw, 11rem);
+  text-align: center;
+  overflow: hidden;
+}
+
+.cart-hero h1 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(1.75rem, 2.5vw, 3rem);
+  color: var(--color-white);
+  position: relative;
+  z-index: 1;
+}
+
+.main-cart {
+  background: var(--color-white);
+  padding-bottom: clamp(3rem, 5vw, 6.25rem);
+}
+
+.main-cart__panel {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  margin-top: clamp(-4rem, -5vw, -6rem);
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 -10px 40px rgba(44, 58, 34, 0.08);
+  padding: clamp(1.5rem, 3vw, 3.75rem);
+}
+
+.cart-table__head,
+.cart-table__row {
+  display: grid;
+  grid-template-columns: 1fr 220px 140px;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.cart-table__head {
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(51, 51, 51, 0.15);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-ink);
+}
+
+.cart-table__head span:last-child,
+.cart-table__row .cart-line__total {
+  text-align: right;
+}
+
+.cart-table__row {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(51, 51, 51, 0.08);
+}
+
+.cart-table__product {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.cart-table__thumb {
+  width: 84px;
+  height: 96px;
+  border-radius: var(--radius-sm);
+  background: var(--color-cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.cart-table__thumb img {
+  max-height: 88px;
+  width: auto;
+  object-fit: contain;
+}
+
+.cart-table__title {
+  font-weight: 700;
+  font-size: 1.0625rem;
+  color: var(--color-ink);
+}
+
+.cart-table__meta {
+  font-size: 0.875rem;
+  color: var(--color-body);
+  margin-top: 0.375rem;
+}
+
+.cart-table__qty {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cart-line__total {
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--color-ink);
+}
+
+.cart-table__remove {
+  display: inline-flex;
+  color: var(--color-body);
+  transition: color var(--duration-short);
+}
+
+.cart-table__remove:hover {
+  color: var(--color-ink);
+}
+
+.main-cart__continue {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(51, 51, 51, 0.08);
+}
+
+.main-cart__bottom {
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 420px);
+  gap: 2.5rem;
+  padding-top: 2rem;
+  align-items: start;
+}
+
+.cart-note label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.cart-note textarea {
+  width: 100%;
+  min-height: 110px;
+  border: 1px solid rgba(51, 51, 51, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.cart-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cart-summary__subtotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+.cart-summary__subtotal span:last-child {
+  font-size: 1.5rem;
+  color: var(--color-olive);
+}
+
+.cart-summary__note {
+  font-size: 0.875rem;
+  color: var(--color-body);
+}
+
+.cart-summary .btn {
+  width: 100%;
+}
+
+.cart-coupon {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.cart-coupon input {
+  flex: 1;
+  border: 1px solid rgba(51, 51, 51, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+  min-width: 0;
+}
+
+.main-cart__empty {
+  text-align: center;
+  padding: 4rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+@media screen and (max-width: 749px) {
+  .cart-table__head {
+    display: none;
+  }
+
+  .cart-table__row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .cart-table__row .cart-line__total {
+    text-align: left;
+  }
+
+  .main-cart__bottom {
+    grid-template-columns: 1fr;
+  }
+}

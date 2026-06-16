@@ -1,0 +1,18 @@
+{{ 'section-content-bands.css' | asset_url | stylesheet_tag }}
+
+<section class="page-hero">
+  <div class="page-width">
+    <h1 class="page-hero__heading">{{ page.title }}</h1>
+    <div class="page-hero__text" style="max-width: 880px;">
+      {{ page.content }}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

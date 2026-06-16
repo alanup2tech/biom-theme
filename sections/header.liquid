@@ -1,0 +1,301 @@
+{{ 'component-header.css' | asset_url | stylesheet_tag }}
+
+<header class="site-header">
+  <div class="site-header__inner page-width">
+    <div class="site-header__left">
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="MenuDrawer"
+        data-menu-open
+      >
+        <span class="menu-toggle__dots" aria-hidden="true">
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+        </span>
+        <span class="menu-toggle__label">{{ section.settings.menu_label | default: 'MENU' }}</span>
+      </button>
+    </div>
+
+    <a href="{{ routes.root_url }}" class="site-header__logo" aria-label="{{ shop.name | escape }}">
+      {%- if settings.logo != blank -%}
+        <img
+          src="{{ settings.logo | image_url: width: 364 }}"
+          srcset="{{ settings.logo | image_url: width: 182 }} 1x, {{ settings.logo | image_url: width: 364 }} 2x"
+          alt="{{ settings.logo.alt | default: shop.name | escape }}"
+          width="182"
+          height="100"
+          loading="eager"
+        >
+      {%- else -%}
+        {{ 'logo-biom.svg' | inline_asset_content }}
+      {%- endif -%}
+    </a>
+
+    <div class="site-header__right">
+      <div class="site-header__icons">
+        <button class="site-header__icon" type="button" aria-expanded="false" aria-controls="HeaderSearch" data-search-toggle>
+          <span class="visually-hidden">{{ 'general.search.search' | t }}</span>
+          {{ 'icon-search.svg' | inline_asset_content }}
+        </button>
+        <a class="site-header__icon" href="{{ routes.cart_url }}" data-cart-icon>
+          <span class="visually-hidden">{{ 'general.cart.title' | t }}</span>
+          {{ 'icon-cart.svg' | inline_asset_content }}
+          <span class="cart-count-bubble" data-cart-count aria-label="{{ 'accessibility.cart_count' | t }}">
+            {%- if cart.item_count > 0 -%}{{ cart.item_count }}{%- endif -%}
+          </span>
+        </a>
+        <a class="site-header__icon" href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}">
+          <span class="visually-hidden">{{ 'customer.account.title' | t }}</span>
+          {{ 'icon-account.svg' | inline_asset_content }}
+        </a>
+      </div>
+
+      <nav class="site-header__nav" aria-label="{{ shop.name }} main">
+        <button
+          class="site-header__nav-link"
+          type="button"
+          aria-expanded="false"
+          aria-controls="HeaderProductsDropdown"
+          data-dropdown-toggle
+        >
+          {{ section.settings.products_label | default: 'Our Products' }}
+          <span class="chevron">{{ 'icon-chevron-down.svg' | inline_asset_content }}</span>
+        </button>
+        <a class="site-header__nav-link" href="{{ section.settings.wholesale_link | default: '#' }}">
+          {{ section.settings.wholesale_label | default: 'Wholesale' }}
+        </a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="header-dropdown" id="HeaderProductsDropdown">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'menu_product' -%}
+        {%- liquid
+          assign item_url = block.settings.link
+          assign item_title = block.settings.title
+          assign item_sub = block.settings.subtitle
+          if block.settings.product != blank
+            assign item_url = block.settings.product.url
+            if item_title == blank
+              assign item_title = block.settings.product.title
+            endif
+          endif
+        -%}
+        <a class="header-dropdown__item" href="{{ item_url | default: '#' }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.product.featured_image -%}
+            <img src="{{ block.settings.product.featured_image | image_url: width: 96 }}" alt="" width="48" height="56" loading="lazy">
+          {%- elsif block.settings.image != blank -%}
+            <img src="{{ block.settings.image | image_url: width: 96 }}" alt="" width="48" height="56" loading="lazy">
+          {%- else -%}
+            <img src="{{ block.settings.fallback_asset | default: 'menu-prod-biom.png' | asset_url }}" alt="" width="48" height="56" loading="lazy">
+          {%- endif -%}
+          <span>
+            <span class="header-dropdown__item-title">{{ item_title }}</span><br>
+            <span class="header-dropdown__item-sub">{{ item_sub }}</span>
+          </span>
+        </a>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+  <div class="header-search" id="HeaderSearch">
+    <form action="{{ routes.search_url }}" method="get" role="search">
+      <input
+        type="search"
+        name="q"
+        value="{{ search.terms | escape }}"
+        placeholder="{{ 'general.search.placeholder' | t }}"
+        aria-label="{{ 'general.search.placeholder' | t }}"
+      >
+      <input name="options[prefix]" type="hidden" value="last">
+      <button class="btn" type="submit">{{ 'general.search.search' | t }}</button>
+    </form>
+  </div>
+</header>
+
+<div class="menu-drawer__overlay" data-menu-overlay tabindex="-1"></div>
+
+<aside class="menu-drawer" id="MenuDrawer" aria-hidden="true" role="dialog" aria-label="{{ section.settings.menu_label | default: 'Menu' }}">
+  <button class="menu-drawer__close" type="button" data-menu-close>
+    {{ section.settings.close_label | default: 'CLOSE' }}
+    {{ 'icon-arrow-right.svg' | inline_asset_content }}
+  </button>
+
+  <div class="menu-drawer__section">
+    <div class="menu-drawer__heading-row">
+      <h2 class="menu-drawer__heading">{{ section.settings.drawer_heading | default: 'Shop By Product' }}</h2>
+      <a class="menu-drawer__see-more" href="{{ section.settings.see_more_link | default: routes.all_products_collection_url }}">
+        {{ section.settings.see_more_label | default: 'See More' }}
+        {{ 'icon-arrow-up-right.svg' | inline_asset_content }}
+      </a>
+    </div>
+
+    <div class="menu-drawer__products">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'menu_product' -%}
+          {%- liquid
+            assign item_url = block.settings.link
+            assign item_title = block.settings.title
+            assign item_sub = block.settings.subtitle
+            if block.settings.product != blank
+              assign item_url = block.settings.product.url
+              if item_title == blank
+                assign item_title = block.settings.product.title
+              endif
+            endif
+          -%}
+          <a
+            class="menu-product-card{% if block.settings.highlight %} is-highlighted{% endif %}"
+            href="{{ item_url | default: '#' }}"
+            {{ block.shopify_attributes }}
+          >
+            <span class="menu-product-card__thumb">
+              {%- if block.settings.product.featured_image -%}
+                <img src="{{ block.settings.product.featured_image | image_url: width: 146 }}" alt="" width="73" height="86" loading="lazy">
+              {%- elsif block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 146 }}" alt="" width="73" height="86" loading="lazy">
+              {%- else -%}
+                <img src="{{ block.settings.fallback_asset | default: 'menu-prod-biom.png' | asset_url }}" alt="" width="73" height="86" loading="lazy">
+              {%- endif -%}
+            </span>
+            <span>
+              <span class="menu-product-card__title">{{ item_title }}</span>
+              <span class="menu-product-card__sub">{{ item_sub }}</span>
+            </span>
+            <span class="menu-product-card__arrow">{{ 'icon-arrow-right.svg' | inline_asset_content }}</span>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <hr class="menu-drawer__divider">
+
+  <nav class="menu-drawer__links" aria-label="Primary">
+    {%- if section.settings.menu != blank -%}
+      {%- for link in section.settings.menu.links -%}
+        <a class="menu-drawer__link" href="{{ link.url }}">{{ link.title }}</a>
+      {%- endfor -%}
+    {%- else -%}
+      <a class="menu-drawer__link" href="{{ routes.all_products_collection_url }}">Shop</a>
+      <a class="menu-drawer__link" href="/pages/our-science">Our Science</a>
+      <a class="menu-drawer__link" href="{{ blog.url | default: '/blogs/news' }}">Learn</a>
+    {%- endif -%}
+  </nav>
+
+  <div class="menu-drawer__ctas">
+    <a class="btn btn--lime btn--bar" href="{{ section.settings.cta1_link | default: routes.all_products_collection_url }}">
+      {{ section.settings.cta1_label | default: 'Shop Systems' }}
+    </a>
+    <a class="btn btn--dark btn--bar" href="{{ section.settings.cta2_link | default: '/pages/take-the-quiz' }}">
+      {{ section.settings.cta2_label | default: 'Take the Quiz' }}
+    </a>
+  </div>
+
+  <hr class="menu-drawer__divider">
+
+  <div class="menu-drawer__support">
+    <p class="menu-drawer__support-heading">{{ section.settings.support_heading | default: 'Support' }}</p>
+    <div class="menu-drawer__support-links">
+      {%- if section.settings.support_menu != blank -%}
+        {%- for link in section.settings.support_menu.links -%}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {%- endfor -%}
+      {%- else -%}
+        <a href="/pages/faq">FAQ</a>
+        <a href="{{ shop.policies.shipping_policy.url | default: '/policies/shipping-policy' }}">Shipping Policy</a>
+        <a href="{{ shop.policies.refund_policy.url | default: '/policies/refund-policy' }}">Returns</a>
+        <a href="/pages/contact">Contact</a>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <p class="menu-drawer__social-heading">{{ section.settings.social_heading | default: 'Visit Us On :' }}</p>
+  {% render 'social-icons' %}
+</aside>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "section-header",
+  "settings": [
+    { "type": "header", "content": "Navigation" },
+    { "type": "text", "id": "menu_label", "label": "Menu label", "default": "MENU" },
+    { "type": "text", "id": "products_label", "label": "Products nav label", "default": "Our Products" },
+    { "type": "text", "id": "wholesale_label", "label": "Second nav label", "default": "Wholesale" },
+    { "type": "url", "id": "wholesale_link", "label": "Second nav link" },
+    { "type": "header", "content": "Menu drawer" },
+    { "type": "text", "id": "close_label", "label": "Close label", "default": "CLOSE" },
+    { "type": "text", "id": "drawer_heading", "label": "Drawer heading", "default": "Shop By Product" },
+    { "type": "text", "id": "see_more_label", "label": "See more label", "default": "See More" },
+    { "type": "url", "id": "see_more_link", "label": "See more link" },
+    { "type": "link_list", "id": "menu", "label": "Primary menu (large links)" },
+    { "type": "text", "id": "cta1_label", "label": "Button 1 label", "default": "Shop Systems" },
+    { "type": "url", "id": "cta1_link", "label": "Button 1 link" },
+    { "type": "text", "id": "cta2_label", "label": "Button 2 label", "default": "Take the Quiz" },
+    { "type": "url", "id": "cta2_link", "label": "Button 2 link" },
+    { "type": "text", "id": "support_heading", "label": "Support heading", "default": "Support" },
+    { "type": "link_list", "id": "support_menu", "label": "Support menu" },
+    { "type": "text", "id": "social_heading", "label": "Social heading", "default": "Visit Us On :" }
+  ],
+  "blocks": [
+    {
+      "type": "menu_product",
+      "name": "Drawer product",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Product" },
+        { "type": "text", "id": "title", "label": "Title (overrides product title)" },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Women's microbiome support for digestive health."
+        },
+        { "type": "image_picker", "id": "image", "label": "Image (overrides product image)" },
+        {
+          "type": "text",
+          "id": "fallback_asset",
+          "label": "Fallback asset filename",
+          "info": "Theme asset used when no product/image is set",
+          "default": "menu-prod-biom.png"
+        },
+        { "type": "url", "id": "link", "label": "Link (overrides product link)" },
+        { "type": "checkbox", "id": "highlight", "label": "Highlight (cream background)", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Header",
+      "blocks": [
+        {
+          "type": "menu_product",
+          "settings": {
+            "title": "LeanBIOM",
+            "fallback_asset": "menu-prod-leanbiom.png",
+            "highlight": true
+          }
+        },
+        {
+          "type": "menu_product",
+          "settings": {
+            "title": "Biom Probiotics",
+            "fallback_asset": "menu-prod-biom.png"
+          }
+        },
+        {
+          "type": "menu_product",
+          "settings": {
+            "title": "Vflora",
+            "fallback_asset": "menu-prod-vflora.png"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

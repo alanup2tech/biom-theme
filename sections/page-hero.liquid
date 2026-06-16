@@ -1,0 +1,36 @@
+{{ 'section-content-bands.css' | asset_url | stylesheet_tag }}
+
+<section class="page-hero">
+  <div class="page-width page-hero__grid">
+    <div class="reveal">
+      <h1 class="page-hero__heading">{{ section.settings.heading | default: page.title }}</h1>
+      <div class="page-hero__text">
+        {%- if section.settings.text != blank -%}
+          {{ section.settings.text }}
+        {%- else -%}
+          {{ page.content }}
+        {%- endif -%}
+      </div>
+    </div>
+    <div class="page-hero__media reveal">
+      {%- if section.settings.image != blank -%}
+        <img width="1200" height="900" src="{{ section.settings.image | image_url: width: 1400 }}" alt="{{ section.settings.image.alt | escape }}" loading="lazy">
+      {%- else -%}
+        <img width="600" height="750" src="{{ 'about-intro-photo.png' | asset_url }}" alt="" loading="lazy">
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page hero",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Biom Pharmaceutical Corporation" },
+    { "type": "richtext", "id": "text", "label": "Text" },
+    { "type": "image_picker", "id": "image", "label": "Image" }
+  ],
+  "presets": [{ "name": "Page hero" }]
+}
+{% endschema %}

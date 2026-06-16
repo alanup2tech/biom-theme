@@ -1,0 +1,187 @@
+/* "Why Most Probiotics Don't Work" — Figma 3613:3597 (olive band, comparison) */
+
+.why-biom {
+  background: var(--color-olive);
+  position: relative;
+  padding: clamp(3rem, 6.25vw, 7.5rem) 0;
+  overflow: hidden;
+  border-radius: clamp(1.5rem, 2.1vw, 2.5rem) clamp(1.5rem, 2.1vw, 2.5rem) 0 0;
+}
+
+.why-biom__intro {
+  max-width: 899px;
+  margin: 0 auto clamp(2.5rem, 3.125vw, 3.75rem);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+  position: relative;
+  z-index: 1;
+}
+
+.why-biom__heading {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(2rem, 2.5vw, 3rem);
+  color: var(--color-cream-bright);
+}
+
+.why-biom__text {
+  font-family: var(--font-grift);
+  font-size: clamp(1rem, 0.94vw, 1.125rem);
+  color: var(--color-white);
+  max-width: 789px;
+  margin: 0 auto;
+  line-height: 1.35;
+}
+
+.why-biom__compare {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 4rem);
+  max-width: 1319px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.why-biom__visual {
+  width: clamp(16rem, 22.8vw, 27.375rem); /* 438px circle */
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.why-biom__visual img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+}
+
+.why-biom__glow {
+  position: absolute;
+  inset: -20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.why-biom__glow svg {
+  width: 140%;
+  height: 140%;
+  opacity: 0.5;
+}
+
+.why-biom__connector {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.why-biom__connector--left {
+  right: 100%;
+}
+
+.why-biom__connector--right {
+  left: 100%;
+}
+
+.why-biom__connector svg {
+  display: block;
+}
+
+.why-biom__visual::after {
+  content: '';
+  position: absolute;
+  top: -9%;
+  bottom: -9%;
+  left: 50%;
+  width: 1px;
+  background: rgba(224, 218, 209, 0.6);
+}
+
+.why-biom-card {
+  border: 1px solid var(--color-beige);
+  border-radius: var(--radius-sm);
+  padding: 1.875rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.875rem;
+  max-width: 337px;
+}
+
+.why-biom-card--right {
+  justify-self: end;
+}
+
+.why-biom-card__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--color-beige);
+}
+
+.why-biom-card__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.why-biom-card__row {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(224, 218, 209, 0.3);
+}
+
+.why-biom-card__row:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.why-biom-card__icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.why-biom-card__icon img,
+.why-biom-card__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.why-biom-card__row p {
+  font-size: clamp(1rem, 0.94vw, 1.125rem);
+  color: var(--color-white);
+  line-height: 1.2;
+  max-width: 264px;
+}
+
+@media screen and (max-width: 989px) {
+  .why-biom__compare {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .why-biom__visual {
+    order: -1;
+    width: min(20rem, 80vw);
+  }
+
+  .why-biom-card,
+  .why-biom-card--right {
+    justify-self: stretch;
+    max-width: none;
+  }
+}

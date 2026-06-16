@@ -1,0 +1,46 @@
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "header": {
+      "type": "header",
+      "blocks": {
+        "menu_product_leanbiom": {
+          "type": "menu_product",
+          "settings": {
+            "title": "LeanBIOM",
+            "subtitle": "Women's microbiome support for digestive health.",
+            "fallback_asset": "menu-prod-leanbiom.png",
+            "highlight": true
+          }
+        },
+        "menu_product_biom": {
+          "type": "menu_product",
+          "settings": {
+            "title": "Biom Probiotics",
+            "subtitle": "Women's microbiome support for digestive health.",
+            "fallback_asset": "menu-prod-biom.png"
+          }
+        },
+        "menu_product_vflora": {
+          "type": "menu_product",
+          "settings": {
+            "title": "Vflora",
+            "subtitle": "Women's microbiome support for digestive health.",
+            "fallback_asset": "menu-prod-vflora.png"
+          }
+        }
+      },
+      "block_order": ["menu_product_leanbiom", "menu_product_biom", "menu_product_vflora"],
+      "settings": {}
+    },
+    "announcement": {
+      "type": "announcement-bar",
+      "settings": {
+        "text": "Free Shipping On Orders $25+",
+        "code_text": "USE CODE: SPRING20"
+      }
+    }
+  },
+  "order": ["header", "announcement"]
+}

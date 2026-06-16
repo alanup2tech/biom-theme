@@ -1,0 +1,77 @@
+{{ 'section-faq.css' | asset_url | stylesheet_tag }}
+
+<section class="faq-section">
+  <div class="page-width faq-section__grid">
+    <div class="reveal">
+      <h2 class="faq-section__heading">{{ section.settings.heading }}</h2>
+      <p class="faq-section__text">{{ section.settings.text }}</p>
+    </div>
+
+    <div class="faq-list">
+      {%- for block in section.blocks -%}
+        <details class="faq-item" {% if forloop.first and section.settings.open_first %}open{% endif %} {{ block.shopify_attributes }}>
+          <summary>
+            {{ block.settings.question }}
+            <span class="chevron">{{ 'icon-chevron-down.svg' | inline_asset_content }}</span>
+          </summary>
+          <div class="faq-item__body">{{ block.settings.answer }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Questions? We're here to Help" },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Have questions? We've got answers. Here are some of our most frequently asked questions about our products, science, and commitment to your intimate wellness."
+    },
+    { "type": "checkbox", "id": "open_first", "label": "Open first item", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What makes BIOM different from standard probiotic supplements?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>BIOM uses a three-part systems approach — prebiotics, probiotics, and postbiotics — combined with proprietary fermentation. This creates a complete ecosystem architecture rather than simply adding bacterial CFUs.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "question": "What makes BIOM different from standard probiotic supplements?",
+            "answer": "<p>BIOM uses a three-part systems approach — prebiotics, probiotics, and postbiotics — combined with proprietary Biofully™ fermentation. This creates a complete ecosystem architecture rather than simply adding bacterial CFUs.</p>"
+          }
+        },
+        { "type": "item", "settings": { "question": "Does this have any downsides?" } },
+        { "type": "item", "settings": { "question": "Why do BIOM products include postbiotics?" } },
+        { "type": "item", "settings": { "question": "How do postbiotics benefit gut health?" } },
+        { "type": "item", "settings": { "question": "What distinguishes postbiotics from probiotics?" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

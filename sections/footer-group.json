@@ -1,0 +1,42 @@
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "col_shop": {
+          "type": "link_column",
+          "settings": {
+            "heading": "Shop",
+            "fallback_links": "Biom Probiotics | /collections/all\nLeanBIOM | /collections/leanbiom\nVFlora | /collections/vflora\nLongiva | /collections/longiva\nBundles | /collections/bundles"
+          }
+        },
+        "col_learn": {
+          "type": "link_column",
+          "settings": {
+            "heading": "Learn",
+            "fallback_links": "Gut Health | /blogs/news\nTake the Quiz | /pages/take-the-quiz\nMicrobiome Science | /pages/our-science"
+          }
+        },
+        "col_company": {
+          "type": "link_column",
+          "settings": {
+            "heading": "Company",
+            "fallback_links": "About Us | /pages/about-us\nOur Technology | /pages/our-science\nPatents | /pages/patents\nResearch | /pages/research"
+          }
+        },
+        "col_support": {
+          "type": "link_column",
+          "settings": {
+            "heading": "Support",
+            "fallback_links": "FAQ | /pages/faq\nShipping Policy | /policies/shipping-policy\nReturns | /policies/refund-policy\nContact | /pages/contact"
+          }
+        }
+      },
+      "block_order": ["col_shop", "col_learn", "col_company", "col_support"],
+      "settings": {}
+    }
+  },
+  "order": ["footer"]
+}

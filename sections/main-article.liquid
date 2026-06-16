@@ -1,0 +1,21 @@
+{{ 'component-aux.css' | asset_url | stylesheet_tag }}
+
+<article class="aux-page">
+  <div class="page-width">
+    <div class="article-content">
+      <h1 class="aux-page__heading">{{ article.title }}</h1>
+      <p class="article-card__meta">{{ article.published_at | date: '%B %d, %Y' }}{% if article.author != blank %} · {{ article.author }}{% endif %}</p>
+      {%- if article.image -%}
+        <img width="1200" height="900" src="{{ article.image | image_url: width: 1640 }}" alt="{{ article.image.alt | escape }}" style="margin: 1.5rem 0;" loading="lazy">
+      {%- endif -%}
+      {{ article.content }}
+    </div>
+  </div>
+</article>
+
+{% schema %}
+{
+  "name": "Article",
+  "settings": []
+}
+{% endschema %}

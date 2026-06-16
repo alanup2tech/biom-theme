@@ -1,0 +1,115 @@
+{{ 'section-main-cart.css' | asset_url | stylesheet_tag }}
+
+<div class="cart-hero noise">
+  <h1>{{ section.settings.heading | default: 'Your Shopping Cart' }}</h1>
+</div>
+
+<section class="main-cart">
+  <div class="page-width">
+    <div class="main-cart__panel">
+      {%- if cart.item_count == 0 -%}
+        <div class="main-cart__empty">
+          <p class="h3">{{ 'general.cart.empty' | t }}</p>
+          <a class="btn" href="{{ routes.all_products_collection_url }}">{{ 'general.cart.continue_shopping' | t }}</a>
+        </div>
+      {%- else -%}
+        <form action="{{ routes.cart_url }}" method="post" id="CartPageForm">
+          <div class="cart-table">
+            <div class="cart-table__head">
+              <span>Product</span>
+              <span>{{ 'products.product.quantity' | t }}</span>
+              <span>Total</span>
+            </div>
+
+            {%- for item in cart.items -%}
+              <div class="cart-table__row" data-line-item data-line-key="{{ item.key }}">
+                <div class="cart-table__product">
+                  <a class="cart-table__thumb" href="{{ item.url }}">
+                    {%- if item.image -%}
+                      <img src="{{ item.image | image_url: width: 168 }}" alt="{{ item.image.alt | escape }}" width="84" height="96" loading="lazy">
+                    {%- endif -%}
+                  </a>
+                  <div>
+                    <a class="cart-table__title" href="{{ item.url }}">{{ item.product.title }}</a>
+                    {%- unless item.product.has_only_default_variant -%}
+                      <p class="cart-table__meta">{{ item.variant.title }}</p>
+                    {%- endunless -%}
+                    {%- if item.selling_plan_allocation -%}
+                      <p class="cart-table__meta">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+                    {%- endif -%}
+                  </div>
+                </div>
+
+                <div class="cart-table__qty">
+                  <div class="cart-line__qty">
+                    <button type="button" data-qty-change="-1" aria-label="Decrease quantity">&minus;</button>
+                    <input type="text" data-qty-input value="{{ item.quantity }}" inputmode="numeric" aria-label="{{ 'products.product.quantity' | t }}" readonly>
+                    <button type="button" data-qty-change="1" aria-label="Increase quantity">+</button>
+                  </div>
+                  <button type="button" class="cart-table__remove" data-line-remove aria-label="{{ 'general.cart.remove' | t }}">
+                    {{ 'icon-trash.svg' | inline_asset_content }}
+                    <span class="visually-hidden">{{ 'general.cart.remove' | t }}</span>
+                  </button>
+                </div>
+
+                <p class="cart-line__total">{{ item.final_line_price | money }}</p>
+              </div>
+            {%- endfor -%}
+          </div>
+
+          <div class="main-cart__continue">
+            <a class="btn" href="{{ routes.all_products_collection_url }}">{{ 'general.cart.continue_shopping' | t }}</a>
+          </div>
+
+          <div class="main-cart__bottom">
+            <div class="cart-note">
+              <label for="CartNote">
+                {{ 'icon-note-journal.svg' | inline_asset_content }}
+                {{ section.settings.note_label | default: 'Add note' }}
+              </label>
+              <textarea id="CartNote" name="note" placeholder="Enter text here...">{{ cart.note }}</textarea>
+            </div>
+
+            <div class="cart-summary">
+              <div class="cart-summary__subtotal">
+                <span>{{ 'general.cart.subtotal' | t }}</span>
+                <span>{{ cart.total_price | money }}</span>
+              </div>
+              <p class="cart-summary__note">{{ 'general.cart.taxes_and_shipping_at_checkout' | t }}</p>
+              <button class="btn btn--dark" type="submit" name="checkout" form="CartPageForm">
+                Proceed to Checkout
+              </button>
+              <div class="cart-coupon">
+                <input type="text" placeholder="Coupon code" aria-label="Coupon code" data-coupon-input>
+                <button class="btn" type="button" data-coupon-apply>Apply Coupon</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var applyBtn = document.querySelector('[data-coupon-apply]');
+    if (!applyBtn) return;
+    applyBtn.addEventListener('click', function () {
+      var input = document.querySelector('[data-coupon-input]');
+      var code = input && input.value.trim();
+      if (code) window.location.href = '/discount/' + encodeURIComponent(code) + '?redirect=/cart';
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Cart",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Your Shopping Cart" },
+    { "type": "text", "id": "note_label", "label": "Note label", "default": "Add note" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,27 @@
+{{ 'component-aux.css' | asset_url | stylesheet_tag }}
+
+<section class="aux-page">
+  <div class="page-width">
+    <h1 class="aux-page__heading" style="text-align:center;">{{ 'templates.collection.title' | t }}s</h1>
+    <div class="blog-grid">
+      {%- for collection in collections -%}
+        <a class="article-card" href="{{ collection.url }}">
+          {%- if collection.featured_image -%}
+            <img width="800" height="600" class="article-card__image" src="{{ collection.featured_image | image_url: width: 800 }}" alt="{{ collection.featured_image.alt | escape }}" loading="lazy">
+          {%- endif -%}
+          <span class="article-card__body">
+            <span class="article-card__title">{{ collection.title }}</span>
+            <span class="article-card__meta">{{ collection.products_count }} products</span>
+          </span>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collections list",
+  "settings": []
+}
+{% endschema %}

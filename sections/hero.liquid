@@ -1,0 +1,148 @@
+{{ 'section-hero.css' | asset_url | stylesheet_tag }}
+
+<section class="hero">
+  <div class="hero__left">
+    <video class="hero__left-bg" autoplay muted loop playsinline>
+      <source src="{{ 'banner-left.mp4' | asset_url }}" type="video/mp4">
+      {%- if section.settings.left_background != blank -%}
+        <img src="{{ section.settings.left_background | image_url: width: 1920 }}" alt="" width="960" height="810" loading="eager">
+      {%- else -%}
+        <img src="{{ 'hero-left-bg.png' | asset_url }}" alt="" width="960" height="810" loading="eager">
+      {%- endif -%}
+    </video>
+    <h1 class="hero__heading reveal">{{ section.settings.heading }}</h1>
+    <p class="hero__text reveal">{{ section.settings.text }}</p>
+
+    {%- if section.settings.show_video_card -%}
+      <a
+        class="hero__video-card reveal"
+        href="{{ section.settings.video_link | default: '#' }}"
+        {% if section.settings.video_link contains 'youtu' or section.settings.video_link contains 'vimeo' %}target="_blank" rel="noopener"{% endif %}
+      >
+        <span class="hero__video-thumb">
+          {%- if section.settings.video_thumb != blank -%}
+            <img src="{{ section.settings.video_thumb | image_url: width: 244 }}" alt="" width="122" height="122" loading="eager">
+          {%- else -%}
+            <img src="{{ 'hero-video-thumb-body.png' | asset_url }}" alt="" width="122" height="122" loading="eager">
+          {%- endif -%}
+          <span class="hero__video-play">{{ 'icon-play.svg' | inline_asset_content }}</span>
+        </span>
+        <span class="hero__video-copy">
+          <span class="hero__video-title">{{ section.settings.video_title }}</span>
+          <span class="hero__video-sub">{{ section.settings.video_text }}</span>
+        </span>
+      </a>
+    {%- endif -%}
+  </div>
+
+  <div class="hero__right noise">
+    {%- if section.settings.panel_image != blank -%}
+      <img width="1200" height="900"
+        class="hero__model"
+        src="{{ section.settings.panel_image | image_url: width: 1410 }}"
+        alt="{{ section.settings.panel_image.alt | escape }}"
+        loading="eager"
+        fetchpriority="high"
+      >
+    {%- else -%}
+      <img width="600" height="450" class="hero__model" src="{{ 'hero-model.png' | asset_url }}" alt="" loading="eager" fetchpriority="high">
+    {%- endif -%}
+
+    <div class="hero__panel-content">
+      <p class="hero__product-title">{{ section.settings.panel_title }}</p>
+
+      <div>
+        <div class="hero__benefits">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'benefit' -%}
+              <div class="hero__benefit" {{ block.shopify_attributes }}>
+                <span class="hero__benefit-icon">
+                  {%- if block.settings.icon != blank -%}
+                    <img src="{{ block.settings.icon | image_url: width: 96 }}" alt="" width="48" height="48" loading="lazy">
+                  {%- elsif block.settings.icon_asset != blank -%}
+                    <img src="{{ block.settings.icon_asset | asset_url }}" alt="" width="48" height="48" loading="lazy">
+                  {%- endif -%}
+                </span>
+                <span class="hero__benefit-text">{{ block.settings.text }}</span>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <a class="btn" href="{{ section.settings.panel_button_link | default: routes.all_products_collection_url }}">
+        {{ section.settings.panel_button_label }}
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The First Microbiome System Designed for Gut & Metabolic Health"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Biom offers a complete microbial ecosystem with beneficial microbes and nutrients to support digestion and microbiome balance."
+    },
+    {
+      "type": "image_picker",
+      "id": "left_background",
+      "label": "Left background illustration"
+    },
+    { "type": "header", "content": "Video card" },
+    { "type": "checkbox", "id": "show_video_card", "label": "Show video card", "default": true },
+    { "type": "text", "id": "video_title", "label": "Title", "default": "Discover Biom" },
+    {
+      "type": "text",
+      "id": "video_text",
+      "label": "Text",
+      "default": "Balance isn't something you add. It's something your ecosystem creates."
+    },
+    { "type": "image_picker", "id": "video_thumb", "label": "Thumbnail" },
+    { "type": "url", "id": "video_link", "label": "Video link" },
+    { "type": "header", "content": "Product panel" },
+    { "type": "text", "id": "panel_title", "label": "Product name", "default": "LeanBiom" },
+    { "type": "image_picker", "id": "panel_image", "label": "Image" },
+    { "type": "text", "id": "panel_button_label", "label": "Button label", "default": "Shop LeanBiom" },
+    { "type": "url", "id": "panel_button_link", "label": "Button link" }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        { "type": "image_picker", "id": "icon", "label": "Icon" },
+        {
+          "type": "text",
+          "id": "icon_asset",
+          "label": "Icon asset filename",
+          "info": "Theme asset used when no icon image is set"
+        },
+        { "type": "text", "id": "text", "label": "Text", "default": "Supports Lean Muscle Preservation" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero",
+      "blocks": [
+        { "type": "benefit", "settings": { "text": "Supports Lean Muscle Preservation", "icon_asset": "icon-benefit-muscle.svg" } },
+        { "type": "benefit", "settings": { "text": "Eases GLP-1 Gut Side Effects", "icon_asset": "icon-benefit-gut.svg" } },
+        { "type": "benefit", "settings": { "text": "Promotes Long-Term Weight Management", "icon_asset": "icon-benefit-weight.svg" } },
+        { "type": "benefit", "settings": { "text": "Enhances GLP-1 Efficacy", "icon_asset": "icon-benefit-glp1.svg" } },
+        { "type": "benefit", "settings": { "text": "Improves Gut Tolerance & Comfort", "icon_asset": "icon-benefit-comfort.svg" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

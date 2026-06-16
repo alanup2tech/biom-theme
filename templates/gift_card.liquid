@@ -1,0 +1,30 @@
+{% layout none %}
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ 'Gift card' }} · {{ shop.name }}</title>
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'component-aux.css' | asset_url | stylesheet_tag }}
+  </head>
+  <body>
+    <section class="aux-page aux-page--center" style="background: var(--color-cream); min-height: 100vh;">
+      <div class="page-width">
+        <h1 class="aux-page__heading">{{ shop.name }}</h1>
+        <p class="aux-page__sub">Here's your gift card!</p>
+        <p class="h2" style="margin-bottom: 1rem;">{{ gift_card.initial_value | money }}</p>
+        {%- if gift_card.enabled == false or gift_card.expired -%}
+          <p class="errors" style="display:inline-block;">This gift card has expired.</p>
+        {%- endif -%}
+        <p class="aux-page__sub" style="font-size: 1.5rem; letter-spacing: 0.1em; font-weight: 700;">
+          {{ gift_card.code | format_code }}
+        </p>
+        {%- if gift_card.balance != gift_card.initial_value -%}
+          <p class="aux-page__sub">Balance: {{ gift_card.balance | money }}</p>
+        {%- endif -%}
+        <a class="btn" href="{{ shop.url }}">{{ 'general.404.continue_shopping' | t }}</a>
+      </div>
+    </section>
+  </body>
+</html>

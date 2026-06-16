@@ -1,0 +1,34 @@
+{
+  "sections": {
+    "hero": {
+      "type": "page-hero",
+      "settings": {
+        "heading": "Biom Pharmaceutical Corporation",
+        "text": "<p>Biom Pharma How To Enhance Human Longevity With Quality Of Life. The Dead Knew Our Research And Product Development Focusing On Five, So-Called Nutritional Supplements And Microbiome Sciences. We Create Designer Drugs Using Patents' Microbiome &amp; Postbiotics Technologies; Our Team Develops Critical Microbiome Technologies For Metabolic And Immune Diseases, Offering Advanced Solutions For Healthcare.</p>"
+      }
+    },
+    "faq": {
+      "type": "faq-grid",
+      "blocks": {
+        "q1": { "type": "item", "settings": { "question": "What makes BIOM different from standard probiotic supplements?", "answer": "<p>BIOM uses a three-part systems approach — prebiotics, probiotics, and postbiotics — combined with proprietary Biofully™ fermentation. This creates a complete ecosystem architecture rather than simply adding bacterial CFUs.</p>" } },
+        "q2": { "type": "item", "settings": { "question": "How does Biofully™ fermentation improve bioavailability?", "answer": "<p>Biofully™ cultures bacteria under gut-mimicked conditions, producing strains pre-adapted to the human colonic pH and oxygen levels. This increases colonization rates compared to conventionally manufactured strains.</p>" } },
+        "q3": { "type": "item", "settings": { "question": "How are BIOM formulas different for women vs. general gut health?", "answer": "<p>Women's formulas like VFlora Daily are specifically designed around the gut-vaginal axis, with strains and female-hormonal-cycle-aware nutrients; general formulas target core gut microflora.</p>" } },
+        "q4": { "type": "item", "settings": { "question": "How long does it take to see results from a microbiome systems approach?", "answer": "<p>Most people notice initial digestive changes within 2–4 weeks. Meaningful ecosystem-level changes typically emerge in 8–12 weeks of consistent use.</p>" } },
+        "q5": { "type": "item", "settings": { "question": "Why do BIOM products include postbiotics?", "answer": "<p>Postbiotics — the metabolites bacteria produce — are recognized as key mediators of gut-body communication, including short-chain fatty acids that nourish the gut lining and immune system.</p>" } },
+        "q6": { "type": "item", "settings": { "question": "Are BIOM products safe for daily long-term use?", "answer": "<p>Yes. All BIOM formulas use GRAS-affirmed or clinically documented strains and are designed for continuous daily use as part of a long-term microbiome maintenance strategy.</p>" } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6"],
+      "settings": { "heading": "Science Questions, Straightforward Answers" }
+    },
+    "cta": {
+      "type": "cta-band",
+      "settings": {
+        "heading": "Ready to Support Your Microbiome Ecosystem?",
+        "text": "Explore the BIOM product line — each formula built on the same three-pillar science platform.",
+        "button1_label": "Shop All Products",
+        "button2_label": "Find My Formula"
+      }
+    }
+  },
+  "order": ["hero", "faq", "cta"]
+}

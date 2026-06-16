@@ -1,0 +1,124 @@
+{{ 'component-footer.css' | asset_url | stylesheet_tag }}
+
+<footer class="site-footer noise">
+  <div class="site-footer__inner page-width">
+    <div class="site-footer__brand">
+      <a href="{{ routes.root_url }}" class="site-footer__logo" aria-label="{{ shop.name | escape }}">
+        {%- if section.settings.footer_logo != blank -%}
+          <img
+            src="{{ section.settings.footer_logo | image_url: width: 1200 }}"
+            alt="{{ shop.name | escape }}"
+            width="600"
+            height="330"
+            loading="lazy"
+          >
+        {%- else -%}
+          {{ 'logo-biom-white.svg' | inline_asset_content }}
+        {%- endif -%}
+      </a>
+
+      <div class="site-footer__badges">
+        {%- if section.settings.badge_1 != blank -%}
+          <img width="378" height="284" src="{{ section.settings.badge_1 | image_url: width: 378 }}" alt="{{ section.settings.badge_1.alt | escape }}" loading="lazy">
+        {%- else -%}
+          {{ 'badge-women-owned.svg' | inline_asset_content }}
+        {%- endif -%}
+        {%- if section.settings.badge_2 != blank -%}
+          <img width="200" height="150" src="{{ section.settings.badge_2 | image_url: width: 200 }}" alt="{{ section.settings.badge_2.alt | escape }}" data-badge-square loading="lazy">
+        {%- else -%}
+          <img src="{{ 'badge-top-workplace.png' | asset_url }}" alt="Top local workplace" width="100" height="100" data-badge-square loading="lazy">
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="site-footer__nav">
+      <div class="site-footer__columns">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'link_column' -%}
+            <div class="site-footer__col" {{ block.shopify_attributes }}>
+              <p class="site-footer__col-heading">{{ block.settings.heading }}</p>
+              <ul>
+                {%- if block.settings.menu != blank -%}
+                  {%- for link in block.settings.menu.links -%}
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                  {%- endfor -%}
+                {%- else -%}
+                  {%- assign labels = block.settings.fallback_links | newline_to_br | split: '<br />' -%}
+                  {%- for label in labels -%}
+                    {%- assign parts = label | split: '|' -%}
+                    <li><a href="{{ parts[1] | strip | default: '#' }}">{{ parts[0] | strip }}</a></li>
+                  {%- endfor -%}
+                {%- endif -%}
+              </ul>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      <div class="site-footer__meta">
+        <div>
+          <p class="site-footer__social-label">{{ section.settings.social_heading | default: 'Visit Us On :' }}</p>
+          {% render 'social-icons', white: true %}
+        </div>
+        <a class="btn btn--beige site-footer__newsletter-btn" href="{{ section.settings.offers_link | default: '#' }}">
+          {{ section.settings.offers_label | default: 'GET EXCLUSIVE OFFERS' }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-footer__legal page-width">
+    {%- if section.settings.disclaimer != blank -%}
+      <p>{{ section.settings.disclaimer }}</p>
+    {%- endif -%}
+    <p>{{ shop.name | upcase }} &copy; Copyright {{ 'now' | date: '%Y' }} | All Rights Reserved.</p>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "class": "section-footer",
+  "settings": [
+    { "type": "image_picker", "id": "footer_logo", "label": "Footer logo (white)" },
+    { "type": "image_picker", "id": "badge_1", "label": "Badge 1" },
+    { "type": "image_picker", "id": "badge_2", "label": "Badge 2" },
+    { "type": "text", "id": "social_heading", "label": "Social heading", "default": "Visit Us On :" },
+    { "type": "text", "id": "offers_label", "label": "Offers button label", "default": "GET EXCLUSIVE OFFERS" },
+    { "type": "url", "id": "offers_link", "label": "Offers button link" },
+    {
+      "type": "textarea",
+      "id": "disclaimer",
+      "label": "Disclaimer",
+      "default": "*These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any diseases."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link_column",
+      "name": "Link column",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Shop" },
+        { "type": "link_list", "id": "menu", "label": "Menu" },
+        {
+          "type": "textarea",
+          "id": "fallback_links",
+          "label": "Fallback links",
+          "info": "One per line: Label | /url — used when no menu is selected"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer",
+      "blocks": [
+        { "type": "link_column", "settings": { "heading": "Shop" } },
+        { "type": "link_column", "settings": { "heading": "Learn" } },
+        { "type": "link_column", "settings": { "heading": "Company" } },
+        { "type": "link_column", "settings": { "heading": "Support" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

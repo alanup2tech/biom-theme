@@ -1,0 +1,196 @@
+{
+  "sections": {
+    "banner": {
+      "type": "collection-banner",
+      "settings": {
+        "heading": "Where Microbiome",
+        "subheading": "Science Meets Real Health",
+        "bullets": "Biomsify® Fermentation Technology\nTriBIOM® Ecosystem Design\nMicrobiome Systems Approach\nUsed by US Skilled Nutrition 2023"
+      }
+    },
+    "foundation": {
+      "type": "cards-trio",
+      "blocks": {
+        "c1": {
+          "type": "card",
+          "settings": {
+            "title": "Biomsify® Fermentation",
+            "text": "Beneficial microbes are cultivated using a proprietary fermentation approach designed to mimic aspects of the gut environment.",
+            "tag": "Patented Process",
+            "icon_asset": "icon-science-flask.svg"
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "title": "TriBIOM® Ecosystem Design",
+            "text": "Each Biom formula combines beneficial microbes, microbial nutrients, and postbiotic metabolites — a complete system, not just a capsule.",
+            "tag": "Proprietary Formula",
+            "icon_asset": "icon-science-atom.svg"
+          }
+        },
+        "c3": {
+          "type": "card",
+          "settings": {
+            "title": "Microbiome Systems Approach",
+            "text": "Instead of delivering isolated bacteria, Biom formulations are designed to support the full microbial ecosystem in your gut.",
+            "tag": "Science-Led Design",
+            "icon_asset": "icon-science-microscope.svg"
+          }
+        }
+      },
+      "block_order": ["c1", "c2", "c3"],
+      "settings": {
+        "heading": "Built on a Foundation Most Probiotics Ignore",
+        "background": "white"
+      }
+    },
+    "why": {
+      "type": "why-biom",
+      "blocks": {
+        "l1": { "type": "left_row", "settings": { "text": "Isolated bacterial strains", "icon_asset": "icon-why-ord-1a.svg" } },
+        "l2": { "type": "left_row", "settings": { "text": "CFU-driven marketing", "icon_asset": "icon-why-ord-2.svg" } },
+        "l3": { "type": "left_row", "settings": { "text": "Random strain combinations", "icon_asset": "icon-why-ord-3.svg" } },
+        "l4": { "type": "left_row", "settings": { "text": "Limited ecosystem support", "icon_asset": "icon-why-ord-4.svg" } },
+        "r1": { "type": "right_row", "settings": { "text": "Multi-layer microbiome ecosystem", "icon_asset": "icon-why-biom-1.svg" } },
+        "r2": { "type": "right_row", "settings": { "text": "Strains + substrates + postbiotic compounds", "icon_asset": "icon-why-biom-2.svg" } },
+        "r3": { "type": "right_row", "settings": { "text": "Gut-like fermentation process", "icon_asset": "icon-why-biom-3.svg" } },
+        "r4": { "type": "right_row", "settings": { "text": "Designed to support microbial balance", "icon_asset": "icon-why-biom-4.svg" } }
+      },
+      "block_order": ["l1", "l2", "l3", "l4", "r1", "r2", "r3", "r4"],
+      "settings": {}
+    },
+    "fermentation": {
+      "type": "cards-trio",
+      "blocks": {
+        "f1": {
+          "type": "card",
+          "settings": {
+            "title": "Gut-Adapted Conditions",
+            "text": "Microbes are cultured under conditions designed to reflect the gut environment, improving resilience and compatibility."
+          }
+        },
+        "f2": {
+          "type": "card",
+          "settings": {
+            "title": "Improved Bioavailability",
+            "text": "Biofully™ fermentation supports better survival of beneficial microbes through digestion."
+          }
+        },
+        "f3": {
+          "type": "card",
+          "settings": {
+            "title": "Complete Ecosystem Output",
+            "text": "Fermentation yields microbes plus their nutrients and metabolites — the full TriBIOM® stack."
+          }
+        }
+      },
+      "block_order": ["f1", "f2", "f3"],
+      "settings": {
+        "heading": "Biofully™ Fermentation That Mirrors Your Gut",
+        "background": "white"
+      }
+    },
+    "steps": {
+      "type": "steps-strip",
+      "blocks": {
+        "s1": { "type": "step", "settings": { "title": "Culture",   "text": "Beneficial microbes are grown in a gut-like fermentation environment.", "icon_asset": "icon-step-culture.png" } },
+        "s2": { "type": "step", "settings": { "title": "Enrich",    "text": "Microbial nutrients and postbiotic compounds are layered in.",           "icon_asset": "icon-step-select.png" } },
+        "s3": { "type": "step", "settings": { "title": "Stabilize", "text": "The ecosystem is stabilized for delivery to your gut.",                  "icon_asset": "icon-step-condition.png" } },
+        "s4": { "type": "step", "settings": { "title": "Deliver",   "text": "Potent microbiome support arrives precisely where your gut needs it.",    "icon_asset": "icon-step-deliver.png" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4"],
+      "settings": {}
+    },
+    "architecture": {
+      "type": "cards-trio",
+      "blocks": {
+        "a1": {
+          "type": "card",
+          "settings": {
+            "title": "Prebiotics",
+            "text": "Targeted substrates that feed beneficial microbes and help them establish.",
+            "icon_asset": "science-arch-prebiotics.png"
+          }
+        },
+        "a2": {
+          "type": "card",
+          "settings": {
+            "title": "Probiotics",
+            "text": "Clinically studied strains selected for ecosystem compatibility.",
+            "icon_asset": "science-arch-probiotics.png"
+          }
+        },
+        "a3": {
+          "type": "card",
+          "settings": {
+            "title": "Postbiotics",
+            "text": "Beneficial microbial metabolites that support gut barrier and immune function.",
+            "icon_asset": "science-arch-postbiotics.png"
+          }
+        }
+      },
+      "block_order": ["a1", "a2", "a3"],
+      "settings": {
+        "heading": "Feed. Seed. Sustain. The Three-Part Architecture",
+        "background": "cream",
+        "button_label": "Shop All Products"
+      }
+    },
+    "research": {
+      "type": "science-split",
+      "blocks": {
+        "r1": {
+          "type": "card",
+          "settings": {
+            "title": "Peer-Reviewed Research",
+            "text": "Our team publishes microbiome research in scientific journals and translates it into product design.",
+            "tag": "Published Science",
+            "icon_asset": "icon-science-flask.svg"
+          }
+        },
+        "r2": {
+          "type": "card",
+          "settings": {
+            "title": "Patented Technology",
+            "text": "Biomsify® and TriBIOM® technologies are protected by granted and pending patents.",
+            "tag": "Patented",
+            "icon_asset": "icon-science-atom.svg"
+          }
+        },
+        "r3": {
+          "type": "card",
+          "settings": {
+            "title": "Clinically Studied Ingredients",
+            "text": "Formulas are built on ingredients validated in independent clinical studies.",
+            "tag": "Clinically Studied",
+            "icon_asset": "icon-science-microscope.svg"
+          }
+        }
+      },
+      "block_order": ["r1", "r2", "r3"],
+      "settings": {
+        "heading": "Microbiome Research Turned Into Real Products",
+        "text": "Founded by scientists, Biom turns peer-reviewed microbiome research into systems that support real health outcomes."
+      }
+    },
+    "faq": {
+      "type": "faq-grid",
+      "blocks": {
+        "q1": { "type": "item", "settings": { "question": "What makes BIOM different from standard probiotic supplements?", "answer": "<p>BIOM uses a three-part systems approach — prebiotics, probiotics, and postbiotics — combined with proprietary Biofully™ fermentation. This creates a complete ecosystem architecture rather than simply adding bacterial CFUs.</p>" } },
+        "q2": { "type": "item", "settings": { "question": "How does Biofully™ fermentation improve bioavailability?", "answer": "<p>Biofully™ cultures bacteria under gut-mimicked conditions, producing strains pre-adapted to the human colonic pH and oxygen levels.</p>" } },
+        "q3": { "type": "item", "settings": { "question": "How are BIOM formulas different for women vs. general gut health?", "answer": "<p>Women's formulas like VFlora Daily are specifically designed around the gut-vaginal axis, while general formulas target core gut microflora.</p>" } },
+        "q4": { "type": "item", "settings": { "question": "How long does it take to see results from a microbiome systems approach?", "answer": "<p>Microbiome shifts are gradual — most people notice initial digestive changes within 2–4 weeks. Meaningful ecosystem-level changes supporting metabolism, immunity, or energy typically emerge over 8–12 weeks of consistent use.</p>" } },
+        "q5": { "type": "item", "settings": { "question": "Why do BIOM products include postbiotics?", "answer": "<p>Postbiotics — the metabolites bacteria produce — are increasingly recognized as key mediators of gut-body communication, including short-chain fatty acids that nourish the gut lining.</p>" } },
+        "q6": { "type": "item", "settings": { "question": "Are BIOM products safe for daily long-term use?", "answer": "<p>Yes. All BIOM formulas use GRAS-affirmed or clinically documented strains and food-grade fermentation, and are designed for continuous daily use.</p>" } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6"],
+      "settings": { "heading": "Science Questions, Straightforward Answers" }
+    },
+    "cta": {
+      "type": "cta-band",
+      "settings": {}
+    }
+  },
+  "order": ["banner", "foundation", "why", "fermentation", "steps", "architecture", "research", "faq", "cta"]
+}

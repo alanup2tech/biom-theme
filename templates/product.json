@@ -1,0 +1,57 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "tab_description": { "type": "tab", "settings": { "title": "Description", "use_description": true } },
+        "tab_ingredients": { "type": "tab", "settings": { "title": "Ingredients" } },
+        "tab_reviews": { "type": "tab", "settings": { "title": "Reviews" } },
+        "tab_benefits": { "type": "tab", "settings": { "title": "Benefits" } }
+      },
+      "block_order": ["tab_description", "tab_ingredients", "tab_reviews", "tab_benefits"],
+      "settings": {}
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "t1": { "type": "video", "settings": { "name": "Sarah M", "image_asset": "testimonial-sarah.png" } },
+        "t2": {
+          "type": "quote",
+          "settings": {
+            "quote": "I finally found a probiotic that actually supports my digestion. My bloating improved noticeably in the first few weeks.",
+            "product_asset": "testimonial-product-2.png"
+          }
+        },
+        "t3": { "type": "video", "settings": { "name": "Catherin", "image_asset": "testimonial-catherin.png" } },
+        "t4": {
+          "type": "quote",
+          "settings": {
+            "quote": "My digestion feels more balanced after starting the 90-day reset. Highly recommend for anyone wanting real gut support.",
+            "product_asset": "testimonial-product-1.png"
+          }
+        }
+      },
+      "block_order": ["t1", "t2", "t3", "t4"],
+      "settings": {}
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q1": {
+          "type": "item",
+          "settings": {
+            "question": "What makes BIOM different from standard probiotic supplements?",
+            "answer": "<p>BIOM uses a three-part systems approach — prebiotics, probiotics, and postbiotics — combined with proprietary Biofully™ fermentation. This creates a complete ecosystem architecture rather than simply adding bacterial CFUs.</p>"
+          }
+        },
+        "q2": { "type": "item", "settings": { "question": "Does this have any downsides?" } },
+        "q3": { "type": "item", "settings": { "question": "Why do BIOM products include postbiotics?" } },
+        "q4": { "type": "item", "settings": { "question": "How do postbiotics benefit gut health?" } },
+        "q5": { "type": "item", "settings": { "question": "What distinguishes postbiotics from probiotics?" } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5"],
+      "settings": {}
+    }
+  },
+  "order": ["main", "testimonials", "faq"]
+}

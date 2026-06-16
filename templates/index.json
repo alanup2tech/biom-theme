@@ -1,0 +1,167 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "blocks": {
+        "benefit_1": { "type": "benefit", "settings": { "text": "Supports Lean Muscle Preservation", "icon_asset": "icon-benefit-muscle.svg" } },
+        "benefit_2": { "type": "benefit", "settings": { "text": "Eases GLP-1 Gut Side Effects", "icon_asset": "icon-benefit-gut.svg" } },
+        "benefit_3": { "type": "benefit", "settings": { "text": "Promotes Long-Term Weight Management", "icon_asset": "icon-benefit-weight.svg" } },
+        "benefit_4": { "type": "benefit", "settings": { "text": "Enhances GLP-1 Efficacy", "icon_asset": "icon-benefit-glp1.svg" } },
+        "benefit_5": { "type": "benefit", "settings": { "text": "Improves Gut Tolerance & Comfort", "icon_asset": "icon-benefit-comfort.svg" } }
+      },
+      "block_order": ["benefit_1", "benefit_2", "benefit_3", "benefit_4", "benefit_5"],
+      "settings": {
+        "panel_button_link": "/collections/all"
+      }
+    },
+    "benefit_cards": {
+      "type": "benefit-cards",
+      "blocks": {
+        "card_1": {
+          "type": "card",
+          "settings": {
+            "title": "Metabolic & Gut Balance",
+            "text": "Support digestion and microbiome balance during metabolic changes.",
+            "button_label": "Shop Now",
+            "link": "/collections/all"
+          }
+        },
+        "card_2": {
+          "type": "card",
+          "settings": {
+            "title": "Healthy Aging & Longevity",
+            "text": "Support the microbiome's role in long-term wellness.",
+            "button_label": "Shop Now",
+            "link": "/collections/all"
+          }
+        },
+        "card_3": {
+          "type": "card",
+          "settings": {
+            "title": "Women's Gut Health",
+            "text": "Microbiome support designed specifically for women's digestive balance.",
+            "button_label": "Shop Now",
+            "link": "/collections/all"
+          }
+        },
+        "card_4": {
+          "type": "card",
+          "settings": {
+            "title": "Daily Gut Health",
+            "text": "Support digestion, regularity, and everyday microbiome resilience.",
+            "button_label": "Shop Now",
+            "link": "/collections/all"
+          }
+        }
+      },
+      "block_order": ["card_1", "card_2", "card_3", "card_4"],
+      "settings": {}
+    },
+    "featured_products": {
+      "type": "featured-products",
+      "settings": {}
+    },
+    "why_biom": {
+      "type": "why-biom",
+      "blocks": {
+        "l1": { "type": "left_row", "settings": { "text": "Isolated bacterial strains", "icon_asset": "icon-why-ord-1a.svg" } },
+        "l2": { "type": "left_row", "settings": { "text": "CFU-driven marketing", "icon_asset": "icon-why-ord-2.svg" } },
+        "l3": { "type": "left_row", "settings": { "text": "Random strain combinations", "icon_asset": "icon-why-ord-3.svg" } },
+        "l4": { "type": "left_row", "settings": { "text": "Limited ecosystem support", "icon_asset": "icon-why-ord-4.svg" } },
+        "r1": { "type": "right_row", "settings": { "text": "Multi-layer microbiome ecosystem", "icon_asset": "icon-why-biom-1.svg" } },
+        "r2": { "type": "right_row", "settings": { "text": "Strains + substrates + postbiotic compounds", "icon_asset": "icon-why-biom-2.svg" } },
+        "r3": { "type": "right_row", "settings": { "text": "Gut-like fermentation process", "icon_asset": "icon-why-biom-3.svg" } },
+        "r4": { "type": "right_row", "settings": { "text": "Designed to support microbial balance", "icon_asset": "icon-why-biom-4.svg" } }
+      },
+      "block_order": ["l1", "l2", "l3", "l4", "r1", "r2", "r3", "r4"],
+      "settings": {}
+    },
+    "science_split": {
+      "type": "science-split",
+      "blocks": {
+        "f1": {
+          "type": "card",
+          "settings": {
+            "title": "Biomsify® Fermentation",
+            "text": "Beneficial microbes are cultivated using a proprietary fermentation approach designed to mimic aspects of the gut environment.",
+            "tag": "Patented Process",
+            "icon_asset": "icon-science-flask.svg"
+          }
+        },
+        "f2": {
+          "type": "card",
+          "settings": {
+            "title": "TriBIOM® Ecosystem Design",
+            "text": "Each Biom formula combines: Beneficial microbes · Microbial nutrients · Postbiotic metabolites a complete system, not just a capsule.",
+            "tag": "Proprietary Formula",
+            "icon_asset": "icon-science-atom.svg"
+          }
+        },
+        "f3": {
+          "type": "card",
+          "settings": {
+            "title": "Microbiome Systems Approach",
+            "text": "Instead of delivering isolated bacteria, Biom formulations are designed to support the full microbial ecosystem in your gut.",
+            "tag": "Science-Led Design",
+            "icon_asset": "icon-science-microscope.svg"
+          }
+        }
+      },
+      "block_order": ["f1", "f2", "f3"],
+      "settings": {}
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "t1": { "type": "video", "settings": { "name": "Sarah M", "image_asset": "testimonial-sarah.png" } },
+        "t2": {
+          "type": "quote",
+          "settings": {
+            "quote": "I finally found a probiotic that actually supports my digestion. My bloating improved noticeably in the first few weeks.",
+            "product_asset": "testimonial-product-2.png",
+            "link": "/collections/all"
+          }
+        },
+        "t3": { "type": "video", "settings": { "name": "Catherin", "image_asset": "testimonial-catherin.png" } },
+        "t4": {
+          "type": "quote",
+          "settings": {
+            "quote": "My digestion feels more balanced after starting the 90-day reset. Highly recommend for anyone wanting real gut support.",
+            "product_asset": "testimonial-product-1.png",
+            "link": "/collections/all"
+          }
+        },
+        "t5": { "type": "video", "settings": { "name": "Sarah M", "image_asset": "testimonial-sarah.png" } }
+      },
+      "block_order": ["t1", "t2", "t3", "t4", "t5"],
+      "settings": {}
+    },
+    "image_banner": {
+      "type": "image-banner",
+      "settings": {
+        "title_line_1": "Support Your Body.",
+        "title_line_2": "Nourish Your Microbiome.",
+        "product_button_label": "Shop Lean Biom",
+        "product_link": "/collections/all",
+        "about_label": "About LeanBiom",
+        "about_link": "/pages/about-us"
+      }
+    },
+    "ecosystem_cta": {
+      "type": "ecosystem-cta",
+      "settings": {
+        "button_link": "/pages/take-the-quiz"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "benefit_cards",
+    "featured_products",
+    "why_biom",
+    "science_split",
+    "testimonials",
+    "image_banner",
+    "ecosystem_cta"
+  ]
+}
