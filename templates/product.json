@@ -9,7 +9,9 @@
         "tab_benefits": { "type": "tab", "settings": { "title": "Benefits" } }
       },
       "block_order": ["tab_description", "tab_ingredients", "tab_reviews", "tab_benefits"],
-      "settings": {}
+      "settings": {
+        "short_description": "<p>Biom's high-strength microbiome supplement works especially well for those with demanding gastrointestinal tract issues.</p><ul><li>Diversifies &amp; strengthen good gut flora</li><li>Improves digestion &amp; digestive enzyme production</li><li>Helps with mood &amp; optimal brain functions</li><li>Clinically proven immunobiotics</li></ul>"
+      }
     },
     "testimonials": {
       "type": "testimonials",
