@@ -23,12 +23,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.625rem;
+  align-self: flex-start;
+  padding: 0.5rem 0.75rem;
   border-radius: var(--radius-sm);
-  background: var(--color-primary);
-  font-size: 1rem;
-  color: var(--color-white);
-  margin-bottom: 1.5rem;
+  background: transparent;
+  border: 1.5px solid var(--color-olive);
+  font-size: 0.875rem;
+  color: var(--color-olive);
+  margin-bottom: 0.25rem;
 }
 
 .product-card__title {
@@ -37,6 +39,7 @@
   font-size: clamp(1.375rem, 1.46vw, 1.75rem);
   color: var(--color-ink);
   text-align: center;
+  margin-bottom: 0.5rem;
 }
 
 .product-card__media {

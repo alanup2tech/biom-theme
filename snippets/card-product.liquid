@@ -12,6 +12,10 @@
 {%- endcomment -%}
 {%- if product != blank -%}
   <a class="product-card" href="{{ product.url }}">
+    {%- if badge != blank -%}
+      <span class="product-card__badge">{{ badge }}</span>
+    {%- endif -%}
+    <h3 class="product-card__title">{{ product.title }}</h3>
     <span class="product-card__media">
       {%- if product.featured_image -%}
         <img
@@ -25,10 +29,6 @@
         >
       {%- endif -%}
     </span>
-    {%- if badge != blank -%}
-      <span class="product-card__badge">{{ badge }}</span>
-    {%- endif -%}
-    <h3 class="product-card__title">{{ product.title }}</h3>
     <span class="product-card__cta">
       <span class="product-card__cta-label">Shop Now</span>
       <span class="product-card__cta-price">{{ product.price | money }}</span>
@@ -36,15 +36,15 @@
   </a>
 {%- else -%}
   <a class="product-card" href="{{ url | default: '#' }}">
+    {%- if badge != blank -%}
+      <span class="product-card__badge">{{ badge }}</span>
+    {%- endif -%}
+    <h3 class="product-card__title">{{ title }}</h3>
     <span class="product-card__media">
       {%- if image_asset != blank -%}
         <img src="{{ image_asset | asset_url }}" alt="{{ title | escape }}" loading="lazy" width="305" height="374">
       {%- endif -%}
     </span>
-    {%- if badge != blank -%}
-      <span class="product-card__badge">{{ badge }}</span>
-    {%- endif -%}
-    <h3 class="product-card__title">{{ title }}</h3>
     <span class="product-card__cta">
       <span class="product-card__cta-label">Shop Now</span>
       {%- if price != blank -%}
