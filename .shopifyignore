@@ -1,4 +1,11 @@
+# Design reference files — not part of the theme
 .figma-ref/
-.claude/
 .preview/
-README.md
+.claude/
+
+# Node / dev tooling
+node_modules/
+package.json
+package-lock.json
+optimize-assets.js
+optimize-fast.js
