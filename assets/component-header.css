@@ -197,8 +197,8 @@
   border-radius: var(--radius-md);
   box-shadow: 0 24px 60px rgba(44, 58, 34, 0.18);
   padding: 0.625rem;
-  opacity: 0;
-  visibility: hidden;
+  opacity: 1;
+  visibility: visible;
   transform: translateY(12px);
   transition: opacity var(--duration-default) var(--ease-spring),
     transform var(--duration-default) var(--ease-spring),
